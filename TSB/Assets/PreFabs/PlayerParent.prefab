@@ -197,7 +197,7 @@ Rigidbody:
   m_GameObject: {fileID: 1967629274073702}
   serializedVersion: 2
   m_Mass: 50
-  m_Drag: 0.5
+  m_Drag: 1
   m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -217,8 +217,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 1084042926903000, guid: 47d06409bd28f51469a347d8e9eb38ad, type: 2}
   num_disc: 2
-  speed: 500
+  accel: 500
   rotateSpeed: 20
+  maxHP: 100
+  opaque: {fileID: 2100000, guid: 506139dac28aab94ca96bfd3e35e5a4b, type: 2}
+  transp: {fileID: 2100000, guid: a9a30ca1eb194de409081b35ba65c0a2, type: 2}
+  cur_disc: 0
 --- !u!135 &135663697983502618
 SphereCollider:
   m_ObjectHideFlags: 1

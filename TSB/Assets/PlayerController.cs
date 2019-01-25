@@ -7,15 +7,20 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] GameObject weapon;
     [SerializeField] private int num_disc;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float accel;
     [SerializeField] private float rotateSpeed;
 
     [SerializeField] private int maxHP = 100;
+
+    [SerializeField] private Material opaque;
+    [SerializeField] private Material transp;
     //[SerializeField] private float friction;
 
     private Rigidbody rb;
-    private int cur_disc;
+    [SerializeField] private int cur_disc;
     private int health;
+
+    private GameObject blockingWall;
 
 	// Use this for initialization
 	void Start () {
@@ -37,20 +42,45 @@ public class PlayerController : MonoBehaviour {
                 Quaternion.LookRotation(dir),
                 Time.deltaTime * rotateSpeed);
         }
-        rb.AddForce(dir * speed);
+        rb.AddForce(dir * accel);
         //var frict = new Vector3(-rb.velocity.x * (1-friction), 0, -rb.velocity.z * (1-friction));
         //rb.AddForce(frict);
+
+        RaycastHit wall;
+        var playerScreen = Camera.main.WorldToScreenPoint(transform.position);
+        Ray toPlayer = Camera.main.ScreenPointToRay(playerScreen);
+        int layer = 1 << 9;
+        if (Physics.Raycast(toPlayer, out wall, (Camera.main.transform.position - transform.position).magnitude, layer, QueryTriggerInteraction.Ignore))
+        {
+            if (blockingWall == null)
+            {
+                blockingWall = wall.collider.gameObject;
+                blockingWall.GetComponent<Renderer>().material = transp;
+            }
+        }
+        else if (blockingWall != null)
+        {
+            blockingWall.GetComponent<Renderer>().material = opaque;
+            blockingWall = null;
+        }
 	}
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1") && cur_disc > 0)
         {
-            var screenclicked = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var newdisc = Instantiate(weapon, transform.position, transform.rotation);
-            newdisc.transform.LookAt(screenclicked);
-            newdisc.transform.position += newdisc.transform.forward;
-            cur_disc -= 1;
+            RaycastHit fire_dir;
+            Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layer = 1 << 8;
+            if (Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
+            {
+                Vector3 dir = fire_dir.point;
+                dir.y += 1;
+                var newdisc = Instantiate(weapon, transform.position, transform.rotation);
+                newdisc.transform.LookAt(dir);
+                newdisc.transform.position += newdisc.transform.forward;
+                cur_disc -= 1;
+            }
         }
     }
 
@@ -60,6 +90,7 @@ public class PlayerController : MonoBehaviour {
         {
             if (collision.gameObject.GetComponent<Disc_Controller>().can_pick_up)
             {
+                collision.gameObject.GetComponent<Disc_Controller>().can_pick_up = false;
                 Destroy(collision.gameObject);
                 cur_disc += 1;
             }
