@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
     //[SerializeField] private float friction;
 
     private Rigidbody rb;
-    [SerializeField] private int cur_disc;
+    private int cur_disc;
     private int health;
     private float cur_invincible;
 
@@ -34,8 +34,10 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         var dir = Vector3.zero;
-        dir.x = Input.GetAxis("Horizontal");
-        dir.z = Input.GetAxis("Vertical");
+        dir.x += Input.GetAxis("Horizontal") * 0.5f;
+        dir.z -= Input.GetAxis("Horizontal") * 0.5f;
+        dir.z += Input.GetAxis("Vertical") * 0.5f;
+        dir.x += Input.GetAxis("Vertical") * 0.5f;
 
         if(dir != Vector3.zero)
         {
@@ -56,6 +58,12 @@ public class PlayerController : MonoBehaviour {
         {
             if (blockingWall == null)
             {
+                blockingWall = wall.collider.gameObject;
+                blockingWall.GetComponent<Renderer>().material = transp;
+            }
+            else if (blockingWall != wall.collider.gameObject)
+            {
+                blockingWall.GetComponent<Renderer>().material = opaque;
                 blockingWall = wall.collider.gameObject;
                 blockingWall.GetComponent<Renderer>().material = transp;
             }

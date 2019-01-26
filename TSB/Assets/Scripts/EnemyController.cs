@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour {
 
     //private Rigidbody rb;
     // Use this for initialization
-    void Start () {
+    void Start() {
         //rb = GetComponent<Rigidbody>();
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
@@ -29,7 +29,6 @@ public class EnemyController : MonoBehaviour {
         agent.destination = target.position;
 
         health = maxHP;
-        print("Starting hp: " + health.ToString());
         attack_CD = 0f;
     }
 	

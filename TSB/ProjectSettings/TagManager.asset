@@ -8,6 +8,7 @@ TagManager:
   - PlayerDisc
   - Enemy
   - Floor
+  - Spawn
   layers:
   - Default
   - TransparentFX

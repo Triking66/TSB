@@ -217,13 +217,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 1084042926903000, guid: 47d06409bd28f51469a347d8e9eb38ad, type: 2}
   num_disc: 2
-  accel: 700
+  accel: 1000
   rotateSpeed: 20
   invincible_time: 0
   maxHP: 100
   opaque: {fileID: 2100000, guid: 506139dac28aab94ca96bfd3e35e5a4b, type: 2}
   transp: {fileID: 2100000, guid: a9a30ca1eb194de409081b35ba65c0a2, type: 2}
-  cur_disc: 0
 --- !u!135 &135663697983502618
 SphereCollider:
   m_ObjectHideFlags: 1
