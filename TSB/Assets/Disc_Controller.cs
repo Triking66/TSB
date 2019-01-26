@@ -5,7 +5,6 @@ using UnityEngine;
 public class Disc_Controller : MonoBehaviour {
 
     [SerializeField] private float speed = 30;
-    [SerializeField] private float invincible_time = 1;
     [SerializeField] private int damage = 50;
 
     public bool can_pick_up = false;
@@ -19,14 +18,6 @@ public class Disc_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (invincible_time > 0)
-        {
-            invincible_time -= Time.deltaTime;
-            if (invincible_time <= 0)
-            {
-                can_pick_up = true;
-            }
-        }
 	}
 
     private void OnCollisionEnter(Collision collision)
@@ -41,8 +32,8 @@ public class Disc_Controller : MonoBehaviour {
         
         else if (collision.gameObject.CompareTag("Enemy") && !hit_wall) 
         {
-            collision.gameObject.GetComponent<EnemyController>().dealDamage(damage);
             hit_wall = true;
+            collision.gameObject.GetComponent<EnemyController>().dealDamage(damage);
             can_pick_up = true;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;

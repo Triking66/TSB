@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float accel;
     [SerializeField] private float rotateSpeed;
 
+    [SerializeField] private float invincible_time;
     [SerializeField] private int maxHP = 100;
 
     [SerializeField] private Material opaque;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     [SerializeField] private int cur_disc;
     private int health;
+    private float cur_invincible;
 
     private GameObject blockingWall;
 
@@ -82,6 +84,10 @@ public class PlayerController : MonoBehaviour {
                 cur_disc -= 1;
             }
         }
+        if(cur_invincible > 0)
+        {
+            cur_invincible -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -99,10 +105,15 @@ public class PlayerController : MonoBehaviour {
 
     public void dealDamage(int amt)
     {
-        health -= amt;
-        if(health <= 0)
+        if (cur_invincible <= 0)
         {
-            Destroy(gameObject);
+            health -= amt;
+            print("Took " + amt.ToString() + " damage, at " + health.ToString() + " HP");
+            cur_invincible = invincible_time;
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
