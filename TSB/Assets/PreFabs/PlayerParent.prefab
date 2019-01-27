@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 54120415602538948}
   m_Layer: 0
   m_Name: PlayerParent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747d764ea5e67d843837ff6d9a4f8a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1084042926903000, guid: 47d06409bd28f51469a347d8e9eb38ad, type: 2}
+  weapon: {fileID: 1006313619737804, guid: 53e519001e3d7fc488cd835376ff1233, type: 2}
   num_disc: 2
   accel: 1000
   rotateSpeed: 20
@@ -223,6 +223,23 @@ MonoBehaviour:
   maxHP: 100
   opaque: {fileID: 2100000, guid: 506139dac28aab94ca96bfd3e35e5a4b, type: 2}
   transp: {fileID: 2100000, guid: a9a30ca1eb194de409081b35ba65c0a2, type: 2}
+  reset_level:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
+          type: 2}
+        m_MethodName: lose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!135 &135663697983502618
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -14,15 +14,14 @@ public class EnemyController : MonoBehaviour {
     private GameObject player;
     private int health;
     private float attack_CD;
+    private Rigidbody rb;
 
     private Transform target;
     private NavMeshAgent agent;
     //[SerializeField] private float friction;
-
-    //private Rigidbody rb;
     // Use this for initialization
     void Start() {
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
         target = player.transform;
@@ -81,12 +80,16 @@ public class EnemyController : MonoBehaviour {
         nw.swing_time = .8f;
     }
 
-    public void dealDamage(int amt)
+    public void dealDamage(int amt, Vector3 dir)
     {
         health -= amt;
-        print("Took " + amt.ToString() + " damage, at " + health.ToString() + " HP");
+
+        dir.y = 1;
+        rb.AddForce(dir * -15, ForceMode.VelocityChange);
+
         if (health <= 0)
         {
+            player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             Destroy(gameObject);
         }
     }

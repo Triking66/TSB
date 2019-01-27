@@ -12,8 +12,11 @@ public class camera_controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 newpos = new Vector3(target.transform.position.x - distance, target.transform.position.y + (2 * distance), target.transform.position.z - distance);
-        transform.position = newpos;
-        transform.LookAt(target.transform.position);
+        if (target != null)
+        {
+            Vector3 newpos = new Vector3(target.transform.position.x - distance, target.transform.position.y + (2 * distance), target.transform.position.z - distance);
+            transform.position = newpos;
+            transform.LookAt(target.transform.position);
+        }
 	}
 }

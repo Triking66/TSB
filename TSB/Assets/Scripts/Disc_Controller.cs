@@ -6,6 +6,7 @@ public class Disc_Controller : MonoBehaviour {
 
     [SerializeField] private float speed = 30;
     [SerializeField] private int damage = 50;
+    [SerializeField] private float rotation_speed = 30;
 
     public bool can_pick_up = false;
     private bool hit_wall = false;
@@ -14,6 +15,8 @@ public class Disc_Controller : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
+        rb.maxAngularVelocity = rotation_speed;
+        rb.angularVelocity = new Vector3(0, rb.maxAngularVelocity, 0);
 	}
 	
 	// Update is called once per frame
@@ -33,7 +36,7 @@ public class Disc_Controller : MonoBehaviour {
         else if (collision.gameObject.CompareTag("Enemy") && !hit_wall) 
         {
             hit_wall = true;
-            collision.gameObject.GetComponent<EnemyController>().dealDamage(damage);
+            collision.gameObject.GetComponent<EnemyController>().dealDamage(damage, transform.position - collision.transform.position);
             can_pick_up = true;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;

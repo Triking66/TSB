@@ -31,7 +31,7 @@ public class Melee_swing : MonoBehaviour {
     {
         if (other.transform.root.gameObject.name == "PlayerParent")
         {
-            other.gameObject.GetComponentInParent<PlayerController>().dealDamage(damage);
+            other.gameObject.GetComponentInParent<PlayerController>().dealDamage(damage, transform.position - other.transform.position);
         }
     }
 }

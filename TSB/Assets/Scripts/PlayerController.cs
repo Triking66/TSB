@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
     [SerializeField] GameObject weapon;
+    [SerializeField] GameObject last_thrown;
     [SerializeField] private int num_disc;
 
     [SerializeField] private float accel;
@@ -15,6 +18,12 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private Material opaque;
     [SerializeField] private Material transp;
+
+    [SerializeField] private UnityEvent reset_level;
+
+    [SerializeField] private Image health_bar;
+    [SerializeField] private Text hp_text;
+    [SerializeField] private Text disk_text;
     //[SerializeField] private float friction;
 
     private Rigidbody rb;
@@ -77,6 +86,10 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (Input.GetButtonDown("Fire1") && cur_disc > 0)
         {
             RaycastHit fire_dir;
@@ -89,8 +102,10 @@ public class PlayerController : MonoBehaviour {
                 var newdisc = Instantiate(weapon, transform.position, transform.rotation);
                 newdisc.transform.LookAt(dir);
                 newdisc.transform.position += newdisc.transform.forward;
+                last_thrown = newdisc;
                 cur_disc -= 1;
             }
+            disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
         }
         if(cur_invincible > 0)
         {
@@ -107,21 +122,48 @@ public class PlayerController : MonoBehaviour {
                 collision.gameObject.GetComponent<Disc_Controller>().can_pick_up = false;
                 Destroy(collision.gameObject);
                 cur_disc += 1;
+                disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
             }
         }
     }
 
-    public void dealDamage(int amt)
+    public void dealDamage(int amt, Vector3 dir)
     {
         if (cur_invincible <= 0)
         {
-            health -= amt;
-            print("Took " + amt.ToString() + " damage, at " + health.ToString() + " HP");
+            health -= amt;if (health >= 100)
+            {
+                health = 100;
+            }
+            hp_text.text = "HP: " + health.ToString();
+            health_bar.rectTransform.sizeDelta = new Vector2(health * 2, 20);
             cur_invincible = invincible_time;
+
+            if (dir != Vector3.zero)
+            {
+                dir.y = .3f;
+                rb.AddForce(dir * -20, ForceMode.VelocityChange);
+            }
+
             if (health <= 0)
             {
+                reset_level.Invoke();
                 Destroy(gameObject);
             }
+            
         }
+    }
+
+    public int get_disk()
+    {
+        return cur_disc;
+    }
+
+    public void return_disk()
+    {
+        Destroy(last_thrown);
+        cur_disc += 1;
+        disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
+        print("Returned");
     }
 }
