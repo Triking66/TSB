@@ -9605,9 +9605,9 @@ Transform:
   m_Father: {fileID: 1559038183}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &657156428 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1967629274073702, guid: d3871dbec139ab84cab1a9f01d2b3534,
+--- !u!4 &657156431 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4074687723111088, guid: d3871dbec139ab84cab1a9f01d2b3534,
     type: 3}
   m_PrefabInstance: {fileID: 1516159678}
   m_PrefabAsset: {fileID: 0}
@@ -10327,6 +10327,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1936804882}
+    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
+        type: 3}
+      propertyPath: FadeSpeed
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
+        type: 3}
+      propertyPath: FadeTime
+      value: 230
+      objectReference: {fileID: 0}
     - target: {fileID: 4058783848359390, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -120
@@ -10358,21 +10373,6 @@ PrefabInstance:
     - target: {fileID: 4058783848359390, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1936804882}
-    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
-        type: 3}
-      propertyPath: FadeSpeed
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
-        type: 3}
-      propertyPath: FadeTime
-      value: 230
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
@@ -11988,7 +11988,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy_type
       value: 
-      objectReference: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a,
+      objectReference: {fileID: 4960820539174146461, guid: a4de4b7915c7df74b80a7e1da0e013a6,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7f7acfd2d952b247a3911dca7eb3698, type: 3}
@@ -19045,11 +19045,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1306102656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5636f5080599a143be3e3bed320224a, type: 3}
+  m_Script: {fileID: 11500000, guid: 91c94dd05edf8ef408260ecab97b4fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 657156428}
-  distance: 10
+  target: {fileID: 657156431}
+  smoothness: 0.125
+  offset: {x: -10, y: 20, z: -10}
 --- !u!81 &1306102658
 AudioListener:
   m_ObjectHideFlags: 0
@@ -22025,6 +22026,14 @@ PrefabInstance:
       propertyPath: disk_text
       value: 
       objectReference: {fileID: 929867519}
+    - target: {fileID: 1904853116351848, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1895379654404428, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
 --- !u!1 &1523471947
