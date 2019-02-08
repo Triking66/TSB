@@ -44,7 +44,7 @@ public class Disc_Controller : MonoBehaviour {
         else if (collision.gameObject.CompareTag("ArcherEnemy") && !hit_wall)
         {
             hit_wall = true;
-            collision.gameObject.GetComponent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
+            collision.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
             can_pick_up = true;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;

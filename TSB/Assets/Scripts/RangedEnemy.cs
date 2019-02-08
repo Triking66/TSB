@@ -66,7 +66,7 @@ public class RangedEnemy : MonoBehaviour
     {
         health -= hit;
         direction.y = 1;
-        rb.AddForce(direction * -15, ForceMode.VelocityChange);
+        rb.velocity = direction * -15;
         if (health <= 0)
         {
             Destroy(gameObject);

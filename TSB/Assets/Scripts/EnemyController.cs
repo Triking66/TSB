@@ -24,8 +24,8 @@ public class EnemyController : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
-        target = player.transform;
-        agent.destination = target.position;
+        //target = player.transform;
+        //agent.destination = target.position;
 
         health = maxHP;
         attack_CD = 0f;
@@ -39,10 +39,25 @@ public class EnemyController : MonoBehaviour {
         //    Quaternion.LookRotation(dir),
         //    Time.deltaTime * rotateSpeed);
         //rb.AddForce(dir * speed);
+        
+
+    }
+
+    private void Update()
+    {
+        if(attack_CD > 0)
+        {
+            attack_CD -= Time.deltaTime;
+        }
         if (player != null)
         {
             target = player.transform;
             agent.destination = target.position;
+            if ((transform.position - target.position).magnitude > 1.5)
+            {
+                agent.enabled = true;
+            }
+            
             if ((transform.position - target.position).magnitude <= 1.5)
             {
                 agent.enabled = false;
@@ -52,20 +67,8 @@ public class EnemyController : MonoBehaviour {
                 attack();
                 attack_CD = attack_interval;
             }
-            if ((transform.position - target.position).magnitude > 1.5)
-            {
-                agent.enabled = true;
-            }
             
-        }
-
-    }
-
-    private void Update()
-    {
-        if(attack_CD > 0)
-        {
-            attack_CD -= Time.deltaTime;
+            
         }
     }
 
@@ -82,7 +85,7 @@ public class EnemyController : MonoBehaviour {
     private void attack()
     {
         GameObject newWeap = Instantiate(weapon, transform);
-        newWeap.transform.localPosition = new Vector3(-2f, 0, .3f);
+        newWeap.transform.localPosition = new Vector3(-1.2f, 0, .3f);
         Melee_swing nw = newWeap.GetComponent<Melee_swing>();
         nw.damage = damage;
         nw.swing_speed = 200;

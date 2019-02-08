@@ -164,14 +164,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
-      propertyPath: m_Name
-      value: RangedEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
-      propertyPath: m_TagString
-      value: ArcherEnemy
-      objectReference: {fileID: 0}
     - target: {fileID: 4933083028154740, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -215,6 +207,14 @@ PrefabInstance:
     - target: {fileID: 4933083028154740, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
+      propertyPath: m_Name
+      value: RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
+      propertyPath: m_TagString
+      value: ArcherEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 23244817608100816, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}

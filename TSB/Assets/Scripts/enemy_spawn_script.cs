@@ -26,6 +26,10 @@ public class enemy_spawn_script : MonoBehaviour {
                 {
                     enemies_remain += 1;
                 }
+                if (child.CompareTag("ArcherEnemy"))
+                {
+                    enemies_remain += 1;
+                }
             }
             if (enemies_remain == 0)
             {
