@@ -43,11 +43,20 @@ public class EnemyController : MonoBehaviour {
         {
             target = player.transform;
             agent.destination = target.position;
+            if ((transform.position - target.position).magnitude <= 1.5)
+            {
+                agent.enabled = false;
+            }
             if ((transform.position - target.position).magnitude < 2.5 && attack_CD <= 0)
             {
                 attack();
                 attack_CD = attack_interval;
             }
+            if ((transform.position - target.position).magnitude > 1.5)
+            {
+                agent.enabled = true;
+            }
+            
         }
 
     }
@@ -73,7 +82,7 @@ public class EnemyController : MonoBehaviour {
     private void attack()
     {
         GameObject newWeap = Instantiate(weapon, transform);
-        newWeap.transform.localPosition = new Vector3(-0.8f, 0, 0);
+        newWeap.transform.localPosition = new Vector3(-2f, 0, .3f);
         Melee_swing nw = newWeap.GetComponent<Melee_swing>();
         nw.damage = damage;
         nw.swing_speed = 200;
