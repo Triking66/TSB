@@ -8,7 +8,7 @@ public class RangedEnemy : MonoBehaviour
     public int health = 100;
     public float attackIntervalMax = 4f;
     public float attackDistanceMax = 10;
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
     public GameObject projectile;
     public float range = 11;
     private float interval;
