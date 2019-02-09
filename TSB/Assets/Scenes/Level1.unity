@@ -22095,6 +22095,12 @@ PrefabInstance:
       propertyPath: disk_text
       value: 
       objectReference: {fileID: 929867519}
+    - target: {fileID: 114823149957742308, guid: d3871dbec139ab84cab1a9f01d2b3534,
+        type: 3}
+      propertyPath: weapon2
+      value: 
+      objectReference: {fileID: 5532807908851619861, guid: 410ee53378e54364f8ba886a7503fff5,
+        type: 3}
     - target: {fileID: 1904853116351848, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_TagString
       value: Player
