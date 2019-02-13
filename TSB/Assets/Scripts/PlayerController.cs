@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField] GameObject weapon;
-    [SerializeField] GameObject last_thrown;
+    [SerializeField] private GameObject weapon;
+    [SerializeField] private GameObject weapon2;
+    [SerializeField] private GameObject last_thrown;
     [SerializeField] private int num_disc;
+    [SerializeField] private float weapon_cool;
 
     [SerializeField] private float accel;
     [SerializeField] private float rotateSpeed;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private int cur_disc;
     private int health;
+    private float weapon_cd;
     private float cur_invincible;
 
     private GameObject blockingWall;
@@ -90,7 +93,7 @@ public class PlayerController : MonoBehaviour {
         {
             Application.Quit();
         }
-        if (Input.GetButtonDown("Fire1") && cur_disc > 0)
+        if (Input.GetButtonDown("Fire1") && weapon_cd <= 0)
         {
             RaycastHit fire_dir;
             Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -103,13 +106,34 @@ public class PlayerController : MonoBehaviour {
                 newdisc.transform.LookAt(dir);
                 newdisc.transform.position += newdisc.transform.forward;
                 last_thrown = newdisc;
-                cur_disc -= 1;
+                weapon_cd = weapon_cool;
             }
             disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
+        }
+        if(Input.GetButtonDown("Fire2"))
+        {
+            RaycastHit fire_dir;
+            Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layer = 1 << 8;
+            if (Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
+            {
+                Vector3 dir = fire_dir.point;
+                dir.y += 1;
+                var newweap = Instantiate(weapon2, transform.position, transform.rotation);
+                newweap.transform.parent = transform;
+                newweap.transform.LookAt(dir);
+                newweap.transform.position += -newweap.transform.right * 1.2f;
+                last_thrown = newweap;
+                weapon_cd = weapon_cool;
+            }
         }
         if(cur_invincible > 0)
         {
             cur_invincible -= Time.deltaTime;
+        }
+        if(weapon_cd > 0)
+        {
+            weapon_cd -= Time.deltaTime;
         }
     }
 

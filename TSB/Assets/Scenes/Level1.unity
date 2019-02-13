@@ -12194,7 +12194,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemy_type
       value: 
-      objectReference: {fileID: 2499000028472330641, guid: 298b2a08c5258fb4d8bc19f893e7f478,
+      objectReference: {fileID: 2960275372637177102, guid: 6ba49bea12183bf4ea0e35c295dea367,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7f7acfd2d952b247a3911dca7eb3698, type: 3}
@@ -22367,6 +22367,12 @@ PrefabInstance:
       propertyPath: disk_text
       value: 
       objectReference: {fileID: 929867519}
+    - target: {fileID: 114823149957742308, guid: d3871dbec139ab84cab1a9f01d2b3534,
+        type: 3}
+      propertyPath: weapon2
+      value: 
+      objectReference: {fileID: 5532807908851619861, guid: 410ee53378e54364f8ba886a7503fff5,
+        type: 3}
     - target: {fileID: 1904853116351848, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_TagString
       value: Player

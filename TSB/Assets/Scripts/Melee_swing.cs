@@ -7,11 +7,12 @@ public class Melee_swing : MonoBehaviour {
     public int damage;
     public int swing_speed;
     public float swing_time;
+    [SerializeField] private List<string> target_tags;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -29,9 +30,20 @@ public class Melee_swing : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.root.gameObject.name == "PlayerParent")
+        for (int a= 0; a < target_tags.Count; a++)
         {
-            other.gameObject.GetComponentInParent<PlayerController>().dealDamage(damage, transform.position - other.transform.position);
+            if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "Player")
+            {
+                other.gameObject.GetComponentInParent<PlayerController>().dealDamage(damage, transform.position - other.transform.position);
+            }
+            if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "Enemy")
+            {
+                other.gameObject.GetComponentInParent<EnemyController>().dealDamage(damage, transform.position - other.transform.position);
+            }
+            if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "ArcherEnemy")
+            {
+                other.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - other.transform.position);
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ public class Disc_Controller : MonoBehaviour {
         rb.velocity = transform.forward * speed;
         rb.maxAngularVelocity = rotation_speed;
         rb.angularVelocity = new Vector3(0, rb.maxAngularVelocity, 0);
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,6 +31,7 @@ public class Disc_Controller : MonoBehaviour {
             can_pick_up = true;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
+            Destroy(gameObject);
         }
         
         else if (collision.gameObject.CompareTag("Enemy") && !hit_wall) 
@@ -40,14 +41,16 @@ public class Disc_Controller : MonoBehaviour {
             can_pick_up = true;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("ArcherEnemy") && !hit_wall)
         {
             hit_wall = true;
-            collision.gameObject.GetComponent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
+            collision.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
             can_pick_up = true;
             rb.useGravity = true;
             rb.constraints = RigidbodyConstraints.None;
+            Destroy(gameObject);
         }
     }
 }

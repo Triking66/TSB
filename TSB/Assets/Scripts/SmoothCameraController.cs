@@ -18,9 +18,12 @@ public class SmoothCameraController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 desiredPosition = target.transform.position + offset;
-        Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position,desiredPosition,ref velocity,smoothness);
-        transform.position = smoothedPosition;
-        //transform.LookAt(target);
+        if (target != null)
+        {
+            Vector3 desiredPosition = target.transform.position + offset;
+            Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothness);
+            transform.position = smoothedPosition;
+            //transform.LookAt(target);
+        }
     }
 }
