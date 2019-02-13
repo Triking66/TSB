@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour {
     [SerializeField] private int damage = 20;
     [SerializeField] private float attack_interval = 2f;
     [SerializeField] private GameObject weapon;
-
+    [SerializeField] private float speed;
     private GameObject player;
     private int health;
     private float attack_CD;
@@ -21,11 +21,13 @@ public class EnemyController : MonoBehaviour {
     //[SerializeField] private float friction;
     // Use this for initialization
     void Start() {
+        GetComponent<Patrol>().enabled = false;
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
-        //target = player.transform;
-        //agent.destination = target.position;
+        agent.speed = speed;
+        target = player.transform;
+        agent.destination = target.position;
 
         health = maxHP;
         attack_CD = 0f;

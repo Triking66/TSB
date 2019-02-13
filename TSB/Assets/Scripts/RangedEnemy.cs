@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class RangedEnemy : MonoBehaviour
 {
     public int health = 100;
+    public float speed = 5;
     public float attackIntervalMax = 4f;
     public float attackDistanceMax = 10;
     NavMeshAgent agent;
@@ -20,10 +21,12 @@ public class RangedEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<Patrol>().enabled = false;
         player = GameObject.FindGameObjectWithTag("Player");
         interval = Random.Range(2,attackIntervalMax);
         distance = Random.Range(5, 10);
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
         initialTime = Time.time;
         agent.stoppingDistance = distance;
         rb=GetComponent<Rigidbody>();
@@ -66,7 +69,8 @@ public class RangedEnemy : MonoBehaviour
     {
         health -= hit;
         direction.y = 1;
-        rb.velocity = direction * -15;
+        
+        rb.AddForce(direction * -15, ForceMode.Impulse);
         if (health <= 0)
         {
             Destroy(gameObject);
