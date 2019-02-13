@@ -27,18 +27,27 @@ public class RadiusAggro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] player = Physics.OverlapSphere(transform.position, radius,layermask);
+    Collider[] player = Physics.OverlapSphere(transform.position, radius,layermask);
         if (player.Length != 0)
         {
-            if (gameObject.tag == ("Enemy"))
+            RaycastHit hit;
+            transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+            if (Physics.Raycast(transform.position + transform.forward, transform.forward, out hit, radius))
             {
-                enemy.GetComponent<EnemyController>().enabled = true;
-            }
-            if (gameObject.tag == "ArcherEnemy")
-            {
-                enemy.GetComponent<RangedEnemy>().enabled = true;
+                if (hit.transform.tag == "Player")
+                {
+                    if (gameObject.tag == ("Enemy"))
+                    {
+                        enemy.GetComponent<EnemyController>().enabled = true;
+                    }
+                    if (gameObject.tag == "ArcherEnemy")
+                    {
+                        enemy.GetComponent<RangedEnemy>().enabled = true;
+                    }
+                }
             }
         }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
