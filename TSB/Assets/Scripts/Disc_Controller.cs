@@ -28,28 +28,21 @@ public class Disc_Controller : MonoBehaviour {
         if (collision.gameObject.CompareTag("Wall") && !hit_wall)
         {
             hit_wall = true;
-            can_pick_up = true;
-            rb.useGravity = true;
-            rb.constraints = RigidbodyConstraints.None;
             Destroy(gameObject);
         }
         
         else if (collision.gameObject.CompareTag("Enemy") && !hit_wall) 
         {
             hit_wall = true;
+            collision.gameObject.GetComponent<EnemyController>().enabled = true;
             collision.gameObject.GetComponent<EnemyController>().dealDamage(damage, transform.position - collision.transform.position);
-            can_pick_up = true;
-            rb.useGravity = true;
-            rb.constraints = RigidbodyConstraints.None;
             Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("ArcherEnemy") && !hit_wall)
         {
             hit_wall = true;
+            collision.gameObject.GetComponentInParent<RangedEnemy>().enabled = true;
             collision.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
-            can_pick_up = true;
-            rb.useGravity = true;
-            rb.constraints = RigidbodyConstraints.None;
             Destroy(gameObject);
         }
     }

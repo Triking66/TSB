@@ -66,11 +66,6 @@ public class enemy_spawn_script : MonoBehaviour {
             }
             active = true;
             GetComponent<BoxCollider>().enabled = false;
-            if(other.transform.parent.GetComponent<PlayerController>().get_disk() <= 0)
-            {
-                print("Returning");
-                other.transform.parent.GetComponent<PlayerController>().return_disk();
-            }
         }
     }
 }
