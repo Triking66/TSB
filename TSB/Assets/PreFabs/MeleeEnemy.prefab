@@ -252,6 +252,7 @@ MonoBehaviour:
   damage: 30
   attack_interval: 2
   weapon: {fileID: 1694518396718028, guid: 7d187383100077d499f6a5baf2bb5df3, type: 3}
+  speed: 5
 --- !u!195 &195238848719599010
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -300,3 +301,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
+  speed: 3

@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private GameObject weapon;
     [SerializeField] private GameObject weapon2;
-    [SerializeField] private GameObject last_thrown;
-    [SerializeField] private int num_disc;
     [SerializeField] private float weapon_cool;
 
     [SerializeField] private float accel;
@@ -17,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float invincible_time;
     [SerializeField] private int maxHP = 100;
+    [SerializeField] private int maxMP = 100;
 
     [SerializeField] private Material opaque;
     [SerializeField] private Material transp;
@@ -24,13 +23,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private UnityEvent reset_level;
 
     [SerializeField] private Image health_bar;
+    [SerializeField] private Image magic_bar;
     [SerializeField] private Text hp_text;
-    [SerializeField] private Text disk_text;
+    [SerializeField] private Text mp_text;
     //[SerializeField] private float friction;
 
     private Rigidbody rb;
-    private int cur_disc;
     private int health;
+    private int magic;
     private float weapon_cd;
     private float cur_invincible;
 
@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-        cur_disc = num_disc;
         health = maxHP;
+        magic = maxMP;
 	}
 	
 	// Update is called once per frame
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
         {
             Application.Quit();
         }
-        if (Input.GetButtonDown("Fire1") && weapon_cd <= 0)
+        if (Input.GetButtonDown("Fire1") && weapon_cd <= 0 && magic > 15)
         {
             RaycastHit fire_dir;
             Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -105,10 +105,12 @@ public class PlayerController : MonoBehaviour {
                 var newdisc = Instantiate(weapon, transform.position, transform.rotation);
                 newdisc.transform.LookAt(dir);
                 newdisc.transform.position += newdisc.transform.forward;
-                last_thrown = newdisc;
                 weapon_cd = weapon_cool;
+                magic -= 15;
+                mp_text.text = "MP " + magic.ToString();
+                magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
             }
-            disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
+            
         }
         if(Input.GetButtonDown("Fire2"))
         {
@@ -122,8 +124,7 @@ public class PlayerController : MonoBehaviour {
                 var newweap = Instantiate(weapon2, transform.position, transform.rotation);
                 newweap.transform.parent = transform;
                 newweap.transform.LookAt(dir);
-                newweap.transform.position += -newweap.transform.right * 1.2f;
-                last_thrown = newweap;
+                newweap.transform.position += -newweap.transform.right * 1.6f;
                 weapon_cd = weapon_cool;
             }
         }
@@ -134,20 +135,6 @@ public class PlayerController : MonoBehaviour {
         if(weapon_cd > 0)
         {
             weapon_cd -= Time.deltaTime;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("PlayerDisc"))
-        {
-            if (collision.gameObject.GetComponent<Disc_Controller>().can_pick_up)
-            {
-                collision.gameObject.GetComponent<Disc_Controller>().can_pick_up = false;
-                Destroy(collision.gameObject);
-                cur_disc += 1;
-                disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
-            }
         }
     }
 
@@ -178,16 +165,10 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public int get_disk()
+    public void restore_mp(int amt)
     {
-        return cur_disc;
-    }
-
-    public void return_disk()
-    {
-        Destroy(last_thrown);
-        cur_disc += 1;
-        disk_text.text = "Boomerangs Left: " + cur_disc.ToString();
-        print("Returned");
+        magic += amt;
+        mp_text.text = "MP " + magic.ToString();
+        magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
     }
 }

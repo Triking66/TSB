@@ -46,7 +46,7 @@ public class reset_level : MonoBehaviour {
             FadeTime -= 1;
             if(FadeTime <= 0)
             {
-                SceneManager.LoadScene("Level1");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
 	}

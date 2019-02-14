@@ -45,6 +45,10 @@ public class RadiusAggro : MonoBehaviour
                         enemy.GetComponent<RangedEnemy>().enabled = true;
                     }
                 }
+                else
+                {
+                    print("Hit wall");
+                }
             }
         }
         

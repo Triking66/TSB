@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33363544064759680}
   - component: {fileID: 23636441851434152}
   - component: {fileID: 136282704661332888}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 33207948174652338}
   - component: {fileID: 23267056605843154}
   - component: {fileID: 135663697983502618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4074687723111088}
   - component: {fileID: 114823149957742308}
   - component: {fileID: 54120415602538948}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerParent
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -233,10 +233,10 @@ MonoBehaviour:
   weapon2: {fileID: 5532807908851619861, guid: 410ee53378e54364f8ba886a7503fff5, type: 3}
   last_thrown: {fileID: 0}
   num_disc: 2
-  weapon_cool: 0
+  weapon_cool: 1
   accel: 1000
   rotateSpeed: 20
-  invincible_time: 0
+  invincible_time: 1.5
   maxHP: 100
   opaque: {fileID: 2100000, guid: 506139dac28aab94ca96bfd3e35e5a4b, type: 2}
   transp: {fileID: 2100000, guid: a9a30ca1eb194de409081b35ba65c0a2, type: 2}

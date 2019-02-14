@@ -73,6 +73,8 @@ public class RangedEnemy : MonoBehaviour
         rb.AddForce(direction * -15, ForceMode.Impulse);
         if (health <= 0)
         {
+            player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
+            player.GetComponent<PlayerController>().restore_mp(10);
             Destroy(gameObject);
         }
     }

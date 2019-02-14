@@ -75,6 +75,10 @@ public class EnemyController : MonoBehaviour {
             
             
         }
+        else
+        {
+            print("Player is null");
+        }
     }
 
     /*private void OnCollisionEnter(Collision collision)
@@ -107,6 +111,7 @@ public class EnemyController : MonoBehaviour {
         if (health <= 0)
         {
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
+            player.GetComponent<PlayerController>().restore_mp(10);
             Destroy(gameObject);
         }
     }
