@@ -21,6 +21,10 @@ public class RadiusAggro : MonoBehaviour
         {
             enemy.GetComponent<RangedEnemy>().enabled = false;
         }
+        if (gameObject.tag == "PriestEnemy")
+        {
+            enemy.GetComponent<PriestEnemy>().enabled = false;
+        }
         layermask = LayerMask.GetMask("Player");
     }
 
@@ -44,6 +48,10 @@ public class RadiusAggro : MonoBehaviour
                     {
                         enemy.GetComponent<RangedEnemy>().enabled = true;
                     }
+                    if (gameObject.tag == "PriestEnemy")
+                    {
+                        enemy.GetComponent<PriestEnemy>().enabled = true;
+                    }
                 }
                 else
                 {
@@ -65,6 +73,10 @@ public class RadiusAggro : MonoBehaviour
             if (gameObject.tag == "ArcherEnemy")
             {
                 enemy.GetComponent<RangedEnemy>().enabled = true;
+            }
+            if (gameObject.tag == "PriestEnemy")
+            {
+                enemy.GetComponent<PriestEnemy>().enabled = true;
             }
         }
     }

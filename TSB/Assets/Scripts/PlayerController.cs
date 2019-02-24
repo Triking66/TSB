@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     private int magic;
     private float weapon_cd;
     private float cur_invincible;
+    private bool beingHandled;
 
     private GameObject blockingWall;
 
@@ -136,6 +137,13 @@ public class PlayerController : MonoBehaviour {
         {
             weapon_cd -= Time.deltaTime;
         }
+        if (rb.constraints == RigidbodyConstraints.FreezePosition)
+        {
+            if (!beingHandled)
+            {
+                StartCoroutine(Free());
+            }
+        }
     }
 
     public void dealDamage(int amt, Vector3 dir)
@@ -163,6 +171,14 @@ public class PlayerController : MonoBehaviour {
             }
             
         }
+    }
+
+    private IEnumerator Free()
+    {
+        beingHandled = true;
+        yield return new WaitForSeconds(3f);
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        beingHandled = false;
     }
 
     public void restore_mp(int amt)

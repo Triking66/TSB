@@ -110,3 +110,4 @@ MonoBehaviour:
   target_tags:
   - Enemy
   - ArcherEnemy
+  - PriestEnemy

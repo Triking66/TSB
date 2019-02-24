@@ -45,5 +45,12 @@ public class Disc_Controller : MonoBehaviour {
             collision.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
             Destroy(gameObject);
         }
+        else if (collision.gameObject.CompareTag("PriestEnemy") && !hit_wall)
+        {
+            hit_wall = true;
+            collision.gameObject.GetComponentInParent<PriestEnemy>().enabled = true;
+            collision.gameObject.GetComponentInParent<PriestEnemy>().dealDamage(damage, transform.position - collision.transform.position);
+            Destroy(gameObject);
+        }
     }
 }

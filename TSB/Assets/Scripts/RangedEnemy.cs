@@ -44,12 +44,16 @@ public class RangedEnemy : MonoBehaviour
                 initialTime = Time.time;
             }
         }
-        if ((transform.position - player.transform.position).magnitude < distance)
+        if ((transform.position - player.transform.position).magnitude < distance-2)
         {
             agent.enabled = false;
             rb.velocity = player.transform.forward*2;
         }
-        if ((transform.position - player.transform.position).magnitude >= distance)
+        if ((transform.position - player.transform.position).magnitude == distance)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        if ((transform.position - player.transform.position).magnitude > distance+2)
         {
             rb.velocity = Vector3.zero;
             agent.enabled = true;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33078641883442598}
   - component: {fileID: 23762784362001704}
   - component: {fileID: 135394359883897254}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sphere
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 33208398559408342}
   - component: {fileID: 23244817608100816}
   - component: {fileID: 136996994494825076}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Capsule
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 195238848719599010}
   - component: {fileID: 8395747966706798076}
   - component: {fileID: 2398966850538509939}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -248,11 +248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7541cb88fe5e644b80974372906598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
   damage: 30
   attack_interval: 2
   weapon: {fileID: 1694518396718028, guid: 7d187383100077d499f6a5baf2bb5df3, type: 3}
   speed: 5
+  health: 100
 --- !u!195 &195238848719599010
 NavMeshAgent:
   m_ObjectHideFlags: 0

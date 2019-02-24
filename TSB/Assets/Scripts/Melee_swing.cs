@@ -44,6 +44,10 @@ public class Melee_swing : MonoBehaviour {
             {
                 other.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - other.transform.position);
             }
+            if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "PriestEnemy")
+            {
+                other.gameObject.GetComponentInParent<PriestEnemy>().dealDamage(damage, transform.position - other.transform.position);
+            }
         }
     }
 }

@@ -6,13 +6,13 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour {
     //[SerializeField] private float speed = 500;
     //[SerializeField] private float rotateSpeed = 20;
-    [SerializeField] private int maxHP = 100;
+    //[SerializeField] private int maxHP = 100;
     [SerializeField] private int damage = 20;
     [SerializeField] private float attack_interval = 2f;
     [SerializeField] private GameObject weapon;
     [SerializeField] private float speed;
     private GameObject player;
-    private int health;
+    public int health = 100;
     private float attack_CD;
     private Rigidbody rb;
 
@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour {
         target = player.transform;
         agent.destination = target.position;
 
-        health = maxHP;
+        //health = maxHP;
         attack_CD = 0f;
     }
 	
