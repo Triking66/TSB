@@ -75,10 +75,6 @@ public class EnemyController : MonoBehaviour {
             
             
         }
-        else
-        {
-            print("Player is null");
-        }
     }
 
     /*private void OnCollisionEnter(Collision collision)
@@ -93,12 +89,13 @@ public class EnemyController : MonoBehaviour {
 
     private void attack()
     {
-        GameObject newWeap = Instantiate(weapon, transform);
+        GameObject newWeap = Instantiate(weapon, transform.position, transform.rotation);
         Melee_swing nw = newWeap.GetComponent<Melee_swing>();
-        newWeap.transform.localPosition = new Vector3(-1.2f, 0, .3f);
+        newWeap.transform.position += -newWeap.transform.right * 1.2f;
         nw.damage = damage;
         nw.swing_speed = 200;
         nw.swing_time = .8f;
+        nw.owner = gameObject;
     }
 
     public void dealDamage(int amt, Vector3 dir)

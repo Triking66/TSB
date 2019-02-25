@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private GameObject weapon;
     [SerializeField] private GameObject weapon2;
     [SerializeField] private float weapon_cool;
+    [SerializeField] private float weapon_cool2;
+    [SerializeField] private int mp_cost1;
+    [SerializeField] private int mp_cost2;
 
     [SerializeField] private float accel;
     [SerializeField] private float rotateSpeed;
@@ -94,7 +97,7 @@ public class PlayerController : MonoBehaviour {
         {
             Application.Quit();
         }
-        if (Input.GetButtonDown("Fire1") && weapon_cd <= 0 && magic > 15)
+        if (Input.GetButtonDown("Fire1") && weapon_cd <= 0 && magic >= mp_cost1)
         {
             RaycastHit fire_dir;
             Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -103,17 +106,28 @@ public class PlayerController : MonoBehaviour {
             {
                 Vector3 dir = fire_dir.point;
                 dir.y += 1;
-                var newdisc = Instantiate(weapon, transform.position, transform.rotation);
-                newdisc.transform.LookAt(dir);
-                newdisc.transform.position += newdisc.transform.forward;
+                var newweap = Instantiate(weapon, transform.position, transform.rotation);
+                
+                switch (weapon.name)
+                {
+                    case ("Disk"):
+                        newweap.transform.LookAt(dir);
+                        newweap.transform.position += newweap.transform.forward;
+                        break;
+                    case ("Player_Sword"):
+                        newweap.GetComponent<Melee_swing>().owner = gameObject;
+                        newweap.transform.LookAt(dir);
+                        newweap.transform.position += -newweap.transform.right * 1.6f;
+                        break;
+                }
                 weapon_cd = weapon_cool;
-                magic -= 15;
+                magic -= mp_cost1;
                 mp_text.text = "MP " + magic.ToString();
                 magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
             }
             
         }
-        if(Input.GetButtonDown("Fire2"))
+        if(Input.GetButtonDown("Fire2") && weapon_cd <= 0 && magic >= mp_cost2)
         {
             RaycastHit fire_dir;
             Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -123,10 +137,23 @@ public class PlayerController : MonoBehaviour {
                 Vector3 dir = fire_dir.point;
                 dir.y += 1;
                 var newweap = Instantiate(weapon2, transform.position, transform.rotation);
-                newweap.transform.parent = transform;
-                newweap.transform.LookAt(dir);
-                newweap.transform.position += -newweap.transform.right * 1.6f;
-                weapon_cd = weapon_cool;
+
+                switch (weapon2.name)
+                {
+                    case ("Disk"):
+                        newweap.transform.LookAt(dir);
+                        newweap.transform.position += newweap.transform.forward;
+                        break;
+                    case ("Player_Sword"):
+                        newweap.GetComponent<Melee_swing>().owner = gameObject;
+                        newweap.transform.LookAt(dir);
+                        newweap.transform.position += -newweap.transform.right * 1.6f;
+                        break;
+                }
+                weapon_cd = weapon_cool2;
+                magic -= mp_cost2;
+                mp_text.text = "MP " + magic.ToString();
+                magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
             }
         }
         if(cur_invincible > 0)
@@ -186,5 +213,24 @@ public class PlayerController : MonoBehaviour {
         magic += amt;
         mp_text.text = "MP " + magic.ToString();
         magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
+    }
+
+    public bool pick_up(GameObject new_weap)
+    {
+        if(weapon == null)
+        {
+            weapon = new_weap;
+            switch (new_weap.name)
+            {
+
+            }
+            return true;
+        }
+        if(weapon2 == null)
+        {
+            weapon2 = new_weap;
+            return true;
+        }
+        return false;
     }
 }

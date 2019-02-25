@@ -231,13 +231,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 1006313619737804, guid: 53e519001e3d7fc488cd835376ff1233, type: 3}
   weapon2: {fileID: 5532807908851619861, guid: 410ee53378e54364f8ba886a7503fff5, type: 3}
-  last_thrown: {fileID: 0}
-  num_disc: 2
   weapon_cool: 1
+  weapon_cool2: 1
+  mp_cost1: 15
+  mp_cost2: 0
   accel: 1000
   rotateSpeed: 20
   invincible_time: 1.5
   maxHP: 100
+  maxMP: 100
   opaque: {fileID: 2100000, guid: 506139dac28aab94ca96bfd3e35e5a4b, type: 2}
   transp: {fileID: 2100000, guid: a9a30ca1eb194de409081b35ba65c0a2, type: 2}
   reset_level:
@@ -258,8 +260,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   health_bar: {fileID: 0}
+  magic_bar: {fileID: 0}
   hp_text: {fileID: 0}
-  disk_text: {fileID: 0}
+  mp_text: {fileID: 0}
 --- !u!54 &54120415602538948
 Rigidbody:
   m_ObjectHideFlags: 0
