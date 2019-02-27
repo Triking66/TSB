@@ -20,9 +20,13 @@ public class EnemyController : MonoBehaviour {
     private NavMeshAgent agent;
     //[SerializeField] private float friction;
     // Use this for initialization
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Start() {
         GetComponent<Patrol>().enabled = false;
-        rb = GetComponent<Rigidbody>();
+        
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;

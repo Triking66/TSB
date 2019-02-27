@@ -55,13 +55,14 @@ public class PlayerController : MonoBehaviour {
         dir.z += Input.GetAxis("Vertical") * 0.5f;
         dir.x += Input.GetAxis("Vertical") * 0.5f;
 
-        if(dir != Vector3.zero)
+        /*if(dir != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 Quaternion.LookRotation(dir),
                 Time.deltaTime * rotateSpeed);
         }
+        */
         rb.AddForce(dir * accel);
         //var frict = new Vector3(-rb.velocity.x * (1-friction), 0, -rb.velocity.z * (1-friction));
         //rb.AddForce(frict);
@@ -93,15 +94,22 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        RaycastHit fire_dir;
+        Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
+        int layer = 1 << 8;
+        if(Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
+        {
+            Vector3 dir = fire_dir.point;
+            dir.y += 1;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir - transform.position, Vector3.up), rotateSpeed * Time.deltaTime);
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
         if (Input.GetButtonDown("Fire1") && weapon_cd <= 0 && magic >= mp_cost1)
         {
-            RaycastHit fire_dir;
-            Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
-            int layer = 1 << 8;
             if (Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
             {
                 Vector3 dir = fire_dir.point;
@@ -129,9 +137,6 @@ public class PlayerController : MonoBehaviour {
         }
         if(Input.GetButtonDown("Fire2") && weapon_cd <= 0 && magic >= mp_cost2)
         {
-            RaycastHit fire_dir;
-            Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
-            int layer = 1 << 8;
             if (Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
             {
                 Vector3 dir = fire_dir.point;
@@ -177,9 +182,10 @@ public class PlayerController : MonoBehaviour {
     {
         if (cur_invincible <= 0)
         {
-            health -= amt;if (health >= 100)
+            health -= amt;
+            if (health > maxHP)
             {
-                health = 100;
+                health = maxHP;
             }
             hp_text.text = "HP: " + health.ToString();
             health_bar.rectTransform.sizeDelta = new Vector2(health * 2, 20);
@@ -210,7 +216,12 @@ public class PlayerController : MonoBehaviour {
 
     public void restore_mp(int amt)
     {
+        
         magic += amt;
+        if(magic > maxMP)
+        {
+            magic = maxMP;
+        }
         mp_text.text = "MP " + magic.ToString();
         magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
     }

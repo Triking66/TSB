@@ -236,7 +236,7 @@ MonoBehaviour:
   mp_cost1: 15
   mp_cost2: 0
   accel: 1000
-  rotateSpeed: 20
+  rotateSpeed: 300
   invincible_time: 1.5
   maxHP: 100
   maxMP: 100
