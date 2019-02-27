@@ -209,11 +209,15 @@ MonoBehaviour:
   health: 100
   speed: 5
   healInterval: 4
+  bindInterval: 5
   healDistance: 10
+  revivegap: 10
   amountHealed: 50
   heal: {fileID: 6950221934363054024, guid: 2817e98c0ca0f0f4691aaf052765dfc0, type: 3}
   bind: {fileID: 892289286421072795, guid: 680521a62a6a303498eed4572c3acc7b, type: 3}
+  revive: {fileID: 3696363218195926258, guid: 76468acbec63b8045adb6b27585cc176, type: 3}
   range: 11
+  enemy: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
 --- !u!1 &3876758372403095136
 GameObject:
   m_ObjectHideFlags: 0

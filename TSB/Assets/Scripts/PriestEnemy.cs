@@ -13,16 +13,21 @@ public class PriestEnemy : MonoBehaviour
     public float healInterval = 4f;
     public float bindInterval = 5f;
     public float healDistance = 10f;
+    public float revivegap = 10f;
     public int amountHealed = 50;
     public ParticleSystem heal;
     public ParticleSystem bind;
+    public ParticleSystem revive;
     NavMeshAgent agent;
     public float range = 11;
     private float interval;
     private float distance;
     float initialTime;
+    float revinitialTime;
     GameObject player;
+    public GameObject enemy;
     Rigidbody rb;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,7 @@ public class PriestEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         initialTime = Time.time;
+        revinitialTime = Time.time;
         agent.stoppingDistance = distance;
         rb = GetComponent<Rigidbody>();
         layermaskheal = LayerMask.GetMask("Enemy");
@@ -48,7 +54,11 @@ public class PriestEnemy : MonoBehaviour
         if (Time.time - initialTime >= healInterval)
         {
             Heal();
-        }      
+        }
+        if (Time.time - revinitialTime >= revivegap)
+        {
+            Resurrection();
+        }
         if ((transform.position - player.transform.position).magnitude < distance-2)
         {
             agent.enabled = false;
@@ -78,7 +88,7 @@ public class PriestEnemy : MonoBehaviour
         {
             for(int i = 0; i < healees.Length; i++)
             {
-                if (healees[i].transform.parent.GetComponent<EnemyController>().health < 100)
+                if (healees[i].transform.parent.GetComponent<EnemyController>().health <= 100-amountHealed)
                 {
                     Vector3 healpoint = healees[i].transform.TransformPoint(0, 3, 0);
                     healees[i].gameObject.transform.parent.GetComponent<EnemyController>().health = healees[i].gameObject.transform.parent.GetComponent<EnemyController>().health + amountHealed;
@@ -116,5 +126,16 @@ public class PriestEnemy : MonoBehaviour
             player.GetComponent<PlayerController>().restore_mp(10);
             Destroy(gameObject);
         }
+    }
+    public void Resurrection()
+    {
+        Collider[] healees = Physics.OverlapSphere(transform.position, healDistance, layermaskheal);
+        if (healees.Length == 0)
+        {
+            GameObject revivedenemy=Instantiate(enemy, transform.position + transform.forward * 2, Quaternion.Euler(90, 0, 0));
+            Instantiate(revive,revivedenemy.transform.position,Quaternion.Euler(90,0,0));
+            revinitialTime = Time.time;
+        }
+        
     }
 }
