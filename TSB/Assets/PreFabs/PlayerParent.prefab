@@ -235,6 +235,9 @@ MonoBehaviour:
   weapon_cool2: 1
   mp_cost1: 15
   mp_cost2: 0
+  drops:
+  - {fileID: 3314166245558669310, guid: 87f8aa885db0cff42942a72ca72ce61f, type: 3}
+  - {fileID: 1958512545025099446, guid: 5aa16c1d41ac30b4ba1f0c0c4d66abe6, type: 3}
   accel: 1000
   rotateSpeed: 300
   invincible_time: 1.5

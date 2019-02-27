@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         initialtime = Time.time;
-        player = GameObject.FindGameObjectWithTag("Player");      
+        player = GameObject.FindGameObjectWithTag("Player").transform.root.gameObject;      
     }
 
     // Update is called once per frame

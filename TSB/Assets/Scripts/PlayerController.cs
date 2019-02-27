@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private int mp_cost1;
     [SerializeField] private int mp_cost2;
 
+    [SerializeField] private List<GameObject> drops;
+
     [SerializeField] private float accel;
     [SerializeField] private float rotateSpeed;
 
@@ -108,57 +110,105 @@ public class PlayerController : MonoBehaviour {
         {
             Application.Quit();
         }
-        if (Input.GetButtonDown("Fire1") && weapon_cd <= 0 && magic >= mp_cost1)
+        if (Input.GetButtonDown("Fire1") && weapon != null && weapon_cd <= 0 && magic >= mp_cost1)
         {
             if (Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
             {
-                Vector3 dir = fire_dir.point;
-                dir.y += 1;
-                var newweap = Instantiate(weapon, transform.position, transform.rotation);
-                
-                switch (weapon.name)
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    case ("Disk"):
-                        newweap.transform.LookAt(dir);
-                        newweap.transform.position += newweap.transform.forward;
-                        break;
-                    case ("Player_Sword"):
-                        newweap.GetComponent<Melee_swing>().owner = gameObject;
-                        newweap.transform.LookAt(dir);
-                        newweap.transform.position += -newweap.transform.right * 1.6f;
-                        break;
+                    Vector3 dir = fire_dir.point;
+                    dir.y += 1;
+                    GameObject weapon_drop = null;
+                    switch (weapon.name)
+                    {
+                        case ("Disk"):
+                            weapon_drop = drops[0];
+                            break;
+                        case ("Player_Sword"):
+                            weapon_drop = drops[1];
+                            break;
+                    }
+                    var newweap = Instantiate(weapon_drop, transform.position, transform.rotation);
+                    newweap.transform.LookAt(dir);
+                    newweap.transform.position += newweap.transform.forward;
+                    newweap.GetComponent<Rigidbody>().velocity = newweap.transform.forward;
+
+                    weapon = null;
                 }
-                weapon_cd = weapon_cool;
-                magic -= mp_cost1;
-                mp_text.text = "MP " + magic.ToString();
-                magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
+                else
+                {
+                    Vector3 dir = fire_dir.point;
+                    dir.y += 1;
+                    var newweap = Instantiate(weapon, transform.position, transform.rotation);
+
+                    switch (weapon.name)
+                    {
+                        case ("Disk"):
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward;
+                            break;
+                        case ("Player_Sword"):
+                            newweap.GetComponent<Melee_swing>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += -newweap.transform.right * 1.6f;
+                            break;
+                    }
+                    weapon_cd = weapon_cool;
+                    magic -= mp_cost1;
+                    mp_text.text = "MP " + magic.ToString();
+                    magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
+                }
             }
             
         }
-        if(Input.GetButtonDown("Fire2") && weapon_cd <= 0 && magic >= mp_cost2)
+        if(Input.GetButtonDown("Fire2") && weapon2 != null && weapon_cd <= 0 && magic >= mp_cost2)
         {
             if (Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
             {
-                Vector3 dir = fire_dir.point;
-                dir.y += 1;
-                var newweap = Instantiate(weapon2, transform.position, transform.rotation);
-
-                switch (weapon2.name)
+                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    case ("Disk"):
-                        newweap.transform.LookAt(dir);
-                        newweap.transform.position += newweap.transform.forward;
-                        break;
-                    case ("Player_Sword"):
-                        newweap.GetComponent<Melee_swing>().owner = gameObject;
-                        newweap.transform.LookAt(dir);
-                        newweap.transform.position += -newweap.transform.right * 1.6f;
-                        break;
+                    GameObject weapon_drop = null;
+                    switch (weapon2.name)
+                    {
+                        case ("Disk"):
+                            weapon_drop = drops[0];
+                            break;
+                        case ("Player_Sword"):
+                            weapon_drop = drops[1];
+                            break;
+                    }
+                    Vector3 dir = fire_dir.point;
+                    dir.y += 1;
+                    var newweap = Instantiate(weapon_drop, transform.position, transform.rotation);
+                    newweap.transform.LookAt(dir);
+                    newweap.transform.position += newweap.transform.forward;
+                    newweap.GetComponent<Rigidbody>().velocity = newweap.transform.forward;
+
+                    weapon2 = null;
                 }
-                weapon_cd = weapon_cool2;
-                magic -= mp_cost2;
-                mp_text.text = "MP " + magic.ToString();
-                magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
+                else
+                {
+                    Vector3 dir = fire_dir.point;
+                    dir.y += 1;
+                    var newweap = Instantiate(weapon2, transform.position, transform.rotation);
+
+                    switch (weapon2.name)
+                    {
+                        case ("Disk"):
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward;
+                            break;
+                        case ("Player_Sword"):
+                            newweap.GetComponent<Melee_swing>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += -newweap.transform.right * 1.6f;
+                            break;
+                    }
+                    weapon_cd = weapon_cool2;
+                    magic -= mp_cost2;
+                    mp_text.text = "MP " + magic.ToString();
+                    magic_bar.rectTransform.sizeDelta = new Vector2(magic * 2, 20);
+                }
             }
         }
         if(cur_invincible > 0)
@@ -233,13 +283,27 @@ public class PlayerController : MonoBehaviour {
             weapon = new_weap;
             switch (new_weap.name)
             {
-
+                case "Disk":
+                    mp_cost1 = 15;
+                    break;
+                case "Player_Sword":
+                    mp_cost1 = 0;
+                    break;
             }
             return true;
         }
-        if(weapon2 == null)
+        else if(weapon2 == null)
         {
             weapon2 = new_weap;
+            switch (new_weap.name)
+            {
+                case "Disk":
+                    mp_cost2 = 15;
+                    break;
+                case "Player_Sword":
+                    mp_cost2 = 0;
+                    break;
+            }
             return true;
         }
         return false;
