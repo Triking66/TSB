@@ -7,8 +7,12 @@ public class Melee_swing : MonoBehaviour {
     public int damage;
     public int swing_speed;
     public float swing_time;
+    private bool swinging = false;
     public GameObject owner;
     [SerializeField] private List<string> target_tags;
+    [SerializeField] private float time_to_extend = 0.5f;
+    [SerializeField] private int extend_mp_cost = 20;
+    [SerializeField] private float extend_amt = 0.6f;
     private Vector3 prev_owner_pos = Vector3.zero;
 
 	// Use this for initialization
@@ -18,7 +22,7 @@ public class Melee_swing : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (owner != null)
+        if (owner != null && swinging)
         {
             transform.RotateAround(owner.transform.position, transform.up, swing_speed * Time.deltaTime);
         }
@@ -26,10 +30,38 @@ public class Melee_swing : MonoBehaviour {
 
     private void Update()
     {
-        swing_time -= Time.deltaTime;
-        if(swing_time <= 0)
+        if (swinging)
         {
-            Destroy(gameObject);
+            swing_time -= Time.deltaTime;
+            if (swing_time <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if (owner.CompareTag("Player"))
+            {
+                PlayerController pc = owner.GetComponent<PlayerController>();
+                if((Input.GetButton("Fire1") || Input.GetButton("Fire2")) && pc.magic >= extend_mp_cost)
+                {
+                    time_to_extend -= Time.deltaTime;
+                    if(time_to_extend <= 0f)
+                    {
+                        swinging = true;
+                        extend();
+                        pc.restore_mp(-extend_mp_cost);
+                    }
+                }
+                else
+                {
+                    swinging = true;
+                }
+            }
+            else
+            {
+                swinging = true;
+            }
         }
         if (owner != null)
         {
@@ -66,5 +98,11 @@ public class Melee_swing : MonoBehaviour {
                 other.gameObject.GetComponentInParent<PriestEnemy>().dealDamage(damage, transform.position - other.transform.position);
             }
         }
+    }
+
+    private void extend()
+    {
+        transform.position += -transform.right * (extend_amt / 2);
+        transform.localScale = new Vector3(transform.localScale.x + extend_amt, transform.localScale.y, transform.localScale.z);
     }
 }
