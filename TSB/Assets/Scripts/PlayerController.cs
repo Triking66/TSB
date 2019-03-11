@@ -127,6 +127,9 @@ public class PlayerController : MonoBehaviour {
                         case ("Player_Sword"):
                             weapon_drop = drops[1];
                             break;
+                        case ("Knife"):
+                            weapon_drop = drops[2];
+                            break;
                     }
                     var newweap = Instantiate(weapon_drop, transform.position, transform.rotation);
                     newweap.transform.LookAt(dir);
@@ -152,6 +155,11 @@ public class PlayerController : MonoBehaviour {
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += -newweap.transform.right * 1.6f;
                             break;
+                        case ("Knife"):
+                            newweap.GetComponent<first_knife>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward;
+                            break;
                     }
                     weapon_cd = weapon_cool;
                     magic -= mp_cost1;
@@ -175,6 +183,9 @@ public class PlayerController : MonoBehaviour {
                             break;
                         case ("Player_Sword"):
                             weapon_drop = drops[1];
+                            break;
+                        case ("Knife"):
+                            weapon_drop = drops[2];
                             break;
                     }
                     Vector3 dir = fire_dir.point;
@@ -202,6 +213,11 @@ public class PlayerController : MonoBehaviour {
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += -newweap.transform.right * 1.6f;
+                            break;
+                        case ("Knife"):
+                            newweap.GetComponent<first_knife>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward;
                             break;
                     }
                     weapon_cd = weapon_cool2;
@@ -289,6 +305,9 @@ public class PlayerController : MonoBehaviour {
                 case "Player_Sword":
                     mp_cost1 = 0;
                     break;
+                case "Knife":
+                    mp_cost1 = 0;
+                    break;
             }
             return true;
         }
@@ -301,6 +320,9 @@ public class PlayerController : MonoBehaviour {
                     mp_cost2 = 15;
                     break;
                 case "Player_Sword":
+                    mp_cost2 = 0;
+                    break;
+                case "Knife":
                     mp_cost2 = 0;
                     break;
             }

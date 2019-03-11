@@ -238,6 +238,7 @@ MonoBehaviour:
   drops:
   - {fileID: 3314166245558669310, guid: 87f8aa885db0cff42942a72ca72ce61f, type: 3}
   - {fileID: 1958512545025099446, guid: 5aa16c1d41ac30b4ba1f0c0c4d66abe6, type: 3}
+  - {fileID: 3691474814453091328, guid: 2dd79045d526b1444adb0344f9d1f187, type: 3}
   accel: 1000
   rotateSpeed: 300
   invincible_time: 1.5
@@ -266,6 +267,7 @@ MonoBehaviour:
   magic_bar: {fileID: 0}
   hp_text: {fileID: 0}
   mp_text: {fileID: 0}
+  magic: 0
 --- !u!54 &54120415602538948
 Rigidbody:
   m_ObjectHideFlags: 0

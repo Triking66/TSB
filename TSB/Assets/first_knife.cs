@@ -2,69 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Melee_swing : MonoBehaviour {
-
+public class first_knife : MonoBehaviour
+{
     public int damage;
-    public int swing_speed;
-    public float swing_time;
-    private bool swinging = false;
+    public float stab_speed = 2;
+    public float slow_speed = 0.2f;
+    private bool stabbing = false;
     public GameObject owner;
     [SerializeField] private List<string> target_tags;
-    [SerializeField] private float time_to_extend = 0.5f;
-    [SerializeField] private int extend_mp_cost = 20;
-    [SerializeField] private float extend_amt = 0.6f;
+    [SerializeField] private float time_to_dup = 0.3f;
+    [SerializeField] private int duplicate_mp_cost = 6;
+    [SerializeField] private GameObject dups;
     private Vector3 prev_owner_pos = Vector3.zero;
 
-	// Use this for initialization
-	void Start () {
-        
+    private float cur_speed;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        cur_speed = stab_speed;
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-        if (owner != null && swinging)
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (stabbing)
         {
-            transform.RotateAround(owner.transform.position, transform.up, swing_speed * Time.deltaTime);
+            transform.position += transform.forward * cur_speed;
+            cur_speed -= slow_speed * Time.deltaTime;
+            if(cur_speed <= -stab_speed)
+            {
+                Destroy(gameObject);
+            }
         }
-	}
+    }
 
     private void Update()
     {
-        if (swinging)
+        if (owner == null)
         {
-            swing_time -= Time.deltaTime;
-            if (swing_time <= 0)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
-        else
+        if (owner.CompareTag("Player") && !stabbing)
         {
-            if (owner == null)
+            PlayerController pc = owner.GetComponent<PlayerController>();
+            if ((Input.GetButton("Fire1") || Input.GetButton("Fire2")) && pc.magic >= duplicate_mp_cost)
             {
-                Destroy(gameObject);
-            }
-            if (owner.CompareTag("Player"))
-            {
-                PlayerController pc = owner.GetComponent<PlayerController>();
-                if((Input.GetButton("Fire1") || Input.GetButton("Fire2")) && pc.magic >= extend_mp_cost)
+                time_to_dup -= Time.deltaTime;
+                if (time_to_dup <= 0f)
                 {
-                    time_to_extend -= Time.deltaTime;
-                    if(time_to_extend <= 0f)
-                    {
-                        swinging = true;
-                        extend();
-                        pc.restore_mp(-extend_mp_cost);
-                    }
-                }
-                else
-                {
-                    swinging = true;
+                    stabbing = true;
+                    duplicate();
+                    pc.restore_mp(-duplicate_mp_cost);
                 }
             }
             else
             {
-                swinging = true;
+                stabbing = true;
             }
         }
         if (owner != null)
@@ -75,15 +69,11 @@ public class Melee_swing : MonoBehaviour {
             }
             prev_owner_pos = owner.transform.position;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        for (int a= 0; a < target_tags.Count; a++)
+        for (int a = 0; a < target_tags.Count; a++)
         {
             if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "Player")
             {
@@ -104,9 +94,16 @@ public class Melee_swing : MonoBehaviour {
         }
     }
 
-    private void extend()
+    private void duplicate()
     {
-        transform.position += -transform.right * (extend_amt / 2);
-        transform.localScale = new Vector3(transform.localScale.x + extend_amt, transform.localScale.y, transform.localScale.z);
+        GameObject k1 = Instantiate(dups, transform.position, transform.rotation);
+        GameObject k2 = Instantiate(dups, transform.position, transform.rotation);
+
+        k1.transform.position += k1.transform.right * .1f;
+        k1.transform.Rotate(0, 45, 0);
+        k1.GetComponent<knife_dup>().owner = owner;
+        k2.transform.position -= k1.transform.right * .1f;
+        k2.transform.Rotate(0, -45, 0);
+        k2.GetComponent<knife_dup>().owner = owner;
     }
 }
