@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Material opaque;
     [SerializeField] private Material transp;
 
+
     [SerializeField] private UnityEvent reset_level;
 
     [SerializeField] private Image health_bar;
@@ -39,12 +40,14 @@ public class PlayerController : MonoBehaviour {
     private float weapon_cd;
     private float cur_invincible;
     private bool beingHandled;
+    private Animator animator;
 
     private GameObject blockingWall;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         health = maxHP;
         magic = maxMP;
 	}
@@ -92,7 +95,7 @@ public class PlayerController : MonoBehaviour {
             blockingWall.GetComponent<Renderer>().material = opaque;
             blockingWall = null;
         }
-	}
+    }
 
     void Update()
     {

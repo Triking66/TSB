@@ -13,6 +13,7 @@ public class Disc_Controller : MonoBehaviour {
     private Rigidbody rb;
 	// Use this for initialization
 	void Start () {
+        GetComponent<AudioSource>().Play();
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
         rb.maxAngularVelocity = rotation_speed;
@@ -41,6 +42,7 @@ public class Disc_Controller : MonoBehaviour {
         else if (collision.gameObject.CompareTag("ArcherEnemy") && !hit_wall)
         {
             hit_wall = true;
+
             collision.gameObject.GetComponentInParent<RangedEnemy>().enabled = true;
             collision.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
             Destroy(gameObject);

@@ -27,7 +27,7 @@ public class PriestEnemy : MonoBehaviour
     GameObject player;
     public GameObject enemy;
     Rigidbody rb;
-    
+    private AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +42,7 @@ public class PriestEnemy : MonoBehaviour
         revinitialTime = Time.time;
         agent.stoppingDistance = distance;
         rb = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
         layermaskheal = LayerMask.GetMask("Enemy");
         layermaskbind = LayerMask.GetMask("Player");
         agent.enabled = false;
@@ -51,6 +52,7 @@ public class PriestEnemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        transform.LookAt(player.transform.position + new Vector3(0, 2, 0));
         if (Time.time - initialTime >= healInterval)
         {
             Heal();
@@ -88,7 +90,7 @@ public class PriestEnemy : MonoBehaviour
         {
             for(int i = 0; i < healees.Length; i++)
             {
-                if (healees[i].transform.parent.GetComponent<EnemyController>().health <= 100-amountHealed)
+                if (healees[i].transform.GetComponent<EnemyController>().health <= 100-amountHealed)
                 {
                     Vector3 healpoint = healees[i].transform.TransformPoint(0, 3, 0);
                     healees[i].gameObject.transform.parent.GetComponent<EnemyController>().health = healees[i].gameObject.transform.parent.GetComponent<EnemyController>().health + amountHealed;
@@ -116,6 +118,8 @@ public class PriestEnemy : MonoBehaviour
 
     public void dealDamage(int hit, Vector3 direction)
     {
+        audio.Play();
+        GetComponentInChildren<ParticleSystem>().Play();
         health -= hit;
         direction.y = 1;
 

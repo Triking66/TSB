@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8887887016116152850}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Jail_Door
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8437086009807184932}
   - component: {fileID: 6548962810038757990}
   - component: {fileID: 1343589666683174234}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: jail_cell_with_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}

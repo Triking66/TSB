@@ -15,6 +15,14 @@ public class EnemyController : MonoBehaviour {
     public int health = 100;
     private float attack_CD;
     private Rigidbody rb;
+    private AudioSource audio;
+    private Animator animator;
+    private const string IDLE_ANIMATION_BOOL = "Idle";
+    private const string ATTACK_ANIMATION_BOOL = "Attack";
+    private const string MOVE_ANIMATION_BOOL = "Move";
+    public AudioClip bleed;
+    public AudioClip attacking;
+
 
     private Transform target;
     private NavMeshAgent agent;
@@ -23,13 +31,15 @@ public class EnemyController : MonoBehaviour {
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
     }
     void Start() {
         GetComponent<Patrol>().enabled = false;
-        
+        animator = GetComponent<Animator>();
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+        audio = GetComponent<AudioSource>();
         target = player.transform;
         agent.destination = target.position;
 
@@ -51,6 +61,7 @@ public class EnemyController : MonoBehaviour {
 
     private void Update()
     {
+        transform.LookAt(player.transform.position + new Vector3(0, 2, 0));
         if(attack_CD > 0)
         {
             attack_CD -= Time.deltaTime;
@@ -61,6 +72,7 @@ public class EnemyController : MonoBehaviour {
             if (agent.enabled)
             {
                 agent.destination = target.position;
+                AnimateMove();
             }
             if ((transform.position - target.position).magnitude > 1.5)
             {
@@ -70,6 +82,7 @@ public class EnemyController : MonoBehaviour {
             if ((transform.position - target.position).magnitude <= 1.5)
             {
                 agent.enabled = false;
+                AnimateIdle();
             }
             if ((transform.position - target.position).magnitude < 2.5 && attack_CD <= 0)
             {
@@ -95,6 +108,9 @@ public class EnemyController : MonoBehaviour {
     {
         GameObject newWeap = Instantiate(weapon, transform.position, transform.rotation);
         Melee_swing nw = newWeap.GetComponent<Melee_swing>();
+        AnimateAttack();
+        audio.clip = attacking;
+        audio.Play();
         newWeap.transform.position += -newWeap.transform.right * 1.2f;
         nw.damage = damage;
         nw.swing_speed = 200;
@@ -104,7 +120,12 @@ public class EnemyController : MonoBehaviour {
 
     public void dealDamage(int amt, Vector3 dir)
     {
+        audio.clip = bleed;
+        audio.Play();
+        GetComponentInChildren<ParticleSystem>().Play();
         health -= amt;
+
+
 
         dir.y = 1;
         rb.AddForce(dir * -15, ForceMode.VelocityChange);
@@ -114,6 +135,38 @@ public class EnemyController : MonoBehaviour {
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(10);
             Destroy(gameObject);
+        }
+    }
+
+    private void Animate(string boolname)
+    {
+        DisableOtherAnimations(animator, boolname);
+        animator.SetBool(boolname, true);
+    }
+
+    private void AnimateAttack()
+    {
+        Animate(ATTACK_ANIMATION_BOOL);
+    }
+
+    private void AnimateMove()
+    {
+        Animate(MOVE_ANIMATION_BOOL);
+    }
+
+    private void AnimateIdle()
+    {
+        Animate(IDLE_ANIMATION_BOOL);
+    }
+
+    private void DisableOtherAnimations(Animator animator,string animation)
+    {
+        foreach(AnimatorControllerParameter parameter in animator.parameters)
+        {
+            if (parameter.name != animation)
+            {
+                animator.SetBool(parameter.name, false);
+            }
         }
     }
 }
