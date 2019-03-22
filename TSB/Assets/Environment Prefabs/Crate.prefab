@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8155935250235918132}
   m_Layer: 0
   m_Name: pCube7
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

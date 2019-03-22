@@ -50,7 +50,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114601914456334444
 MonoBehaviour:
@@ -307,11 +307,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3451297284792190215, guid: 4125815a64aae8d46938ec8ceeb7c9b4,
-        type: 3}
-      propertyPath: ShapeModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3451297284660651535, guid: 4125815a64aae8d46938ec8ceeb7c9b4,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -326,6 +321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451297284792190215, guid: 4125815a64aae8d46938ec8ceeb7c9b4,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3451297284660651533, guid: 4125815a64aae8d46938ec8ceeb7c9b4,
         type: 3}
