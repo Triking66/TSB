@@ -15,6 +15,16 @@ public class EnemyController : MonoBehaviour {
     public int health = 100;
     private float attack_CD;
     private Rigidbody rb;
+    private AudioSource audio;
+    private Animator animator;
+    private const string IDLE_ANIMATION_BOOL = "Idle";
+    private const string ATTACK_ANIMATION_BOOL = "Attack";
+    private const string MOVE_ANIMATION_BOOL = "Move";
+    private const string DIE_ANIMATION_BOOL = "Die";
+    public AudioClip bleed;
+    public AudioClip attacking;
+    private ParticleSystem blood;
+    private bool dead = false;
 
     private Transform target;
     private NavMeshAgent agent;
@@ -23,15 +33,18 @@ public class EnemyController : MonoBehaviour {
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
     }
     void Start() {
         GetComponent<Patrol>().enabled = false;
-        
+        animator = GetComponent<Animator>();
         player = GameObject.Find("PlayerParent");
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
+        audio = GetComponent<AudioSource>();
         target = player.transform;
         agent.destination = target.position;
+        blood = GetComponentInChildren<ParticleSystem>();
 
         //health = maxHP;
         attack_CD = 0f;
@@ -51,33 +64,37 @@ public class EnemyController : MonoBehaviour {
 
     private void Update()
     {
-        if(attack_CD > 0)
+        //transform.LookAt(player.transform.position + new Vector3(0, 2, 0));
+        if (!dead)
         {
-            attack_CD -= Time.deltaTime;
-        }
-        if (player != null)
-        {
-            target = player.transform;
-            if (agent.enabled)
+            if (attack_CD > 0)
             {
-                agent.destination = target.position;
+                attack_CD -= Time.deltaTime;
             }
-            if ((transform.position - target.position).magnitude > 1.5)
+            if (player != null)
             {
-                agent.enabled = true;
+                target = player.transform;
+                if (agent.enabled)
+                {
+                    agent.destination = target.position;
+                    AnimateMove();
+                }
+                if ((transform.position - target.position).magnitude > 1.5)
+                {
+                    agent.enabled = true;
+                }
+
+                if ((transform.position - target.position).magnitude <= 1.5)
+                {
+                    agent.enabled = false;
+                    AnimateIdle();
+                }
+                if ((transform.position - target.position).magnitude < 2.5 && attack_CD <= 0)
+                {
+                    attack();
+                    attack_CD = attack_interval;
+                }
             }
-            
-            if ((transform.position - target.position).magnitude <= 1.5)
-            {
-                agent.enabled = false;
-            }
-            if ((transform.position - target.position).magnitude < 2.5 && attack_CD <= 0)
-            {
-                attack();
-                attack_CD = attack_interval;
-            }
-            
-            
         }
     }
 
@@ -95,6 +112,9 @@ public class EnemyController : MonoBehaviour {
     {
         GameObject newWeap = Instantiate(weapon, transform.position, transform.rotation);
         Melee_swing nw = newWeap.GetComponent<Melee_swing>();
+        AnimateAttack();
+        audio.clip = attacking;
+        audio.Play();
         newWeap.transform.position += -newWeap.transform.right * 1.2f;
         nw.damage = damage;
         nw.swing_speed = 200;
@@ -104,16 +124,59 @@ public class EnemyController : MonoBehaviour {
 
     public void dealDamage(int amt, Vector3 dir)
     {
+        audio.clip = bleed;
+        audio.Play();
+        blood.Play();
         health -= amt;
 
+
+
         dir.y = 1;
-        rb.AddForce(dir * -15, ForceMode.VelocityChange);
+        rb.AddForce(dir * -5, ForceMode.VelocityChange);
 
         if (health <= 0)
         {
+            dead = true;
+            AnimateDie();
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(10);
-            Destroy(gameObject);
+            Destroy(gameObject,2);
+        }
+    }
+
+    private void Animate(string boolname)
+    {
+        DisableOtherAnimations(animator, boolname);
+        animator.SetBool(boolname, true);
+    }
+
+    private void AnimateAttack()
+    {
+        Animate(ATTACK_ANIMATION_BOOL);
+    }
+
+    private void AnimateMove()
+    {
+        Animate(MOVE_ANIMATION_BOOL);
+    }
+
+    private void AnimateIdle()
+    {
+        Animate(IDLE_ANIMATION_BOOL);
+    }
+    private void AnimateDie()
+    {
+        Animate(DIE_ANIMATION_BOOL);
+    }
+
+    private void DisableOtherAnimations(Animator animator,string animation)
+    {
+        foreach(AnimatorControllerParameter parameter in animator.parameters)
+        {
+            if (parameter.name != animation)
+            {
+                animator.SetBool(parameter.name, false);
+            }
         }
     }
 }

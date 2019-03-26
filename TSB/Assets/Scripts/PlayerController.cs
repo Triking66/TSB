@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Material opaque;
     [SerializeField] private Material transp;
 
+
     [SerializeField] private UnityEvent reset_level;
 
     [SerializeField] private Image health_bar;
@@ -39,12 +40,20 @@ public class PlayerController : MonoBehaviour {
     private float weapon_cd;
     private float cur_invincible;
     private bool beingHandled;
+    private Animator animator;
+    private int xrotationlock=0;
+    private const string IDLE_ANIMATION_BOOL = "Idle";
+    private const string ATTACK_ANIMATION_BOOL = "Attack";
+    private const string MOVE_ANIMATION_BOOL = "Move";
+    private const string MAGIC_ANIMATION_BOOL = "Cast";
+    private const string DIE_ANIMATION_BOOL = "Die";
 
     private GameObject blockingWall;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         health = maxHP;
         magic = maxMP;
 	}
@@ -92,10 +101,17 @@ public class PlayerController : MonoBehaviour {
             blockingWall.GetComponent<Renderer>().material = opaque;
             blockingWall = null;
         }
-	}
+    }
 
     void Update()
     {
+        if (rb.velocity.magnitude !=0 )
+        {
+            //animator.speed = (rb.velocity.magnitude);
+            //Animate(MOVE_ANIMATION_BOOL);
+        }
+            //Animate(IDLE_ANIMATION_BOOL);
+        
         RaycastHit fire_dir;
         Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
         int layer = 1 << 8;
@@ -147,15 +163,18 @@ public class PlayerController : MonoBehaviour {
                     switch (weapon.name)
                     {
                         case ("Disk"):
+                            Animate(MAGIC_ANIMATION_BOOL);
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
                             break;
                         case ("Player_Sword"):
+                            Animate(ATTACK_ANIMATION_BOOL);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += -newweap.transform.right * 1.6f;
                             break;
                         case ("Knife"):
+                            Animate(ATTACK_ANIMATION_BOOL);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
@@ -206,15 +225,18 @@ public class PlayerController : MonoBehaviour {
                     switch (weapon2.name)
                     {
                         case ("Disk"):
+                            Animate(MAGIC_ANIMATION_BOOL);
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
                             break;
                         case ("Player_Sword"):
+                            Animate(ATTACK_ANIMATION_BOOL);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += -newweap.transform.right * 1.6f;
                             break;
                         case ("Knife"):
+                            Animate(ATTACK_ANIMATION_BOOL);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
@@ -265,8 +287,9 @@ public class PlayerController : MonoBehaviour {
 
             if (health <= 0)
             {
+                Animate(DIE_ANIMATION_BOOL);
                 reset_level.Invoke();
-                Destroy(gameObject);
+                Destroy(gameObject,2);
             }
             
         }
@@ -329,5 +352,22 @@ public class PlayerController : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    private void Animate(string boolname)
+    {
+        DisableOtherAnimations(animator, boolname);
+        animator.SetBool(boolname, true);
+    }
+
+    private void DisableOtherAnimations(Animator animator, string animation)
+    {
+        foreach (AnimatorControllerParameter parameter in animator.parameters)
+        {
+            if (parameter.name != animation)
+            {
+                animator.SetBool(parameter.name, false);
+            }
+        }
     }
 }
