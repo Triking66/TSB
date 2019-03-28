@@ -41,11 +41,10 @@ public class PlayerController : MonoBehaviour {
     private float cur_invincible;
     private bool beingHandled;
     private Animator animator;
-    private int xrotationlock=0;
     private const string IDLE_ANIMATION_BOOL = "Idle";
-    private const string ATTACK_ANIMATION_BOOL = "Attack";
+    private const string ATTACK_ANIMATION_TRIGGER = "Attack";
     private const string MOVE_ANIMATION_BOOL = "Move";
-    private const string MAGIC_ANIMATION_BOOL = "Cast";
+    private const string MAGIC_ANIMATION_TRIGGER = "Cast";
     private const string DIE_ANIMATION_BOOL = "Die";
 
     private GameObject blockingWall;
@@ -65,7 +64,11 @@ public class PlayerController : MonoBehaviour {
         dir.z -= Input.GetAxis("Horizontal") * 0.5f;
         dir.z += Input.GetAxis("Vertical") * 0.5f;
         dir.x += Input.GetAxis("Vertical") * 0.5f;
-
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Idle") == true && rb.velocity.magnitude > 0.2)
+        {
+            Animate(MOVE_ANIMATION_BOOL);
+        }
+        animator.SetFloat("Speed", rb.velocity.magnitude / 5);
         /*if(dir != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(
@@ -104,14 +107,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update()
-    {
-        if (rb.velocity.magnitude !=0 )
-        {
-            //animator.speed = (rb.velocity.magnitude);
-            //Animate(MOVE_ANIMATION_BOOL);
-        }
-            //Animate(IDLE_ANIMATION_BOOL);
-        
+    {   
         RaycastHit fire_dir;
         Ray clicked = Camera.main.ScreenPointToRay(Input.mousePosition);
         int layer = 1 << 8;
@@ -163,18 +159,19 @@ public class PlayerController : MonoBehaviour {
                     switch (weapon.name)
                     {
                         case ("Disk"):
-                            Animate(MAGIC_ANIMATION_BOOL);
+                            animator.SetBool(MOVE_ANIMATION_BOOL, false);
+                            animator.SetTrigger(MAGIC_ANIMATION_TRIGGER);
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
                             break;
                         case ("Player_Sword"):
-                            Animate(ATTACK_ANIMATION_BOOL);
+                            animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += -newweap.transform.right * 1.6f;
                             break;
                         case ("Knife"):
-                            Animate(ATTACK_ANIMATION_BOOL);
+                            animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
@@ -225,18 +222,18 @@ public class PlayerController : MonoBehaviour {
                     switch (weapon2.name)
                     {
                         case ("Disk"):
-                            Animate(MAGIC_ANIMATION_BOOL);
+                            animator.SetTrigger(MAGIC_ANIMATION_TRIGGER);
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
                             break;
                         case ("Player_Sword"):
-                            Animate(ATTACK_ANIMATION_BOOL);
+                            animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += -newweap.transform.right * 1.6f;
                             break;
                         case ("Knife"):
-                            Animate(ATTACK_ANIMATION_BOOL);
+                            animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward;
@@ -364,7 +361,7 @@ public class PlayerController : MonoBehaviour {
     {
         foreach (AnimatorControllerParameter parameter in animator.parameters)
         {
-            if (parameter.name != animation)
+            if (parameter.type==AnimatorControllerParameterType.Bool)
             {
                 animator.SetBool(parameter.name, false);
             }

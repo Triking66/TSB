@@ -112,7 +112,7 @@ public class PriestEnemy : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
             ParticleSystem healeffect = Instantiate(bind, player.transform.position+new Vector3(0,2,0), transform.rotation * Quaternion.Euler(90, 0, 0));
-            healeffect.transform.parent = healees[1].transform;
+            healeffect.transform.parent = healees[0].transform;
         }
     }
 
