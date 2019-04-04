@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
         if(Physics.Raycast(clicked, out fire_dir, 50f, layer, QueryTriggerInteraction.Ignore))
         {
             Vector3 dir = fire_dir.point;
-            dir.y += 1;
+            dir.y = transform.position.y;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dir - transform.position, Vector3.up), rotateSpeed * Time.deltaTime);
         }
 
