@@ -279,7 +279,7 @@ public class PlayerController : MonoBehaviour {
             if (dir != Vector3.zero)
             {
                 dir.y = .3f;
-                rb.AddForce(dir * -20, ForceMode.VelocityChange);
+                rb.AddForce(dir * -100, ForceMode.VelocityChange);
             }
 
             if (health <= 0)
