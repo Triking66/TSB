@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 501312307763502931}
   - component: {fileID: 2216419075644840879}
   - component: {fileID: 6001340030798199563}
+  - component: {fileID: 2757619746792663309}
   m_Layer: 0
   m_Name: BloodSplatter
   m_TagString: Untagged
@@ -40,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8689106986796325121}
   serializedVersion: 6
-  lengthInSec: 0.5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -169,7 +170,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 25
-      minScalar: 15
+      minScalar: 7.25
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -284,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.59
+      scalar: 1.45
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -591,7 +592,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 25
+    maxNumParticles: 50
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -651,7 +652,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 0
+    angle: 44.67
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.91
@@ -966,7 +967,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 6
+        scalar: 10
         minScalar: 3
         maxCurve:
           serializedVersion: 2
@@ -1024,7 +1025,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 6
+        scalar: 10
         minScalar: 3
         maxCurve:
           serializedVersion: 2
@@ -1082,7 +1083,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 6
+        scalar: 10
         minScalar: 3
         maxCurve:
           serializedVersion: 2
@@ -1140,7 +1141,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 6
+        scalar: 10
         minScalar: 3
         maxCurve:
           serializedVersion: 2
@@ -3723,9 +3724,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3898,14 +3899,14 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 1
+    radiusScale: 0.0001
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 768
     maxCollisionShapes: 256
-    quality: 0
+    quality: 1
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -4921,3 +4922,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2757619746792663309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689106986796325121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd1584ea7cbd924188447bfad85a963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decal: {fileID: 5664736053479586584, guid: 2e4403a745dfd274082ee2b79a9f8fe7, type: 3}
