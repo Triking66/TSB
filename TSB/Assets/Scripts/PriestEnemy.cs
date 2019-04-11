@@ -128,7 +128,11 @@ public class PriestEnemy : MonoBehaviour
         {
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(10);
-            Destroy(gameObject);
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<RadiusAggro>().enabled = false;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<BoxCollider>().enabled = false;
+            //Destroy(gameObject);
         }
     }
     public void Resurrection()

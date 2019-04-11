@@ -33179,6 +33179,11 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius

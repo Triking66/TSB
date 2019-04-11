@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2119596758572273099}
   - component: {fileID: 2677741541950490437}
   - component: {fileID: 1148874417907396690}
-  - component: {fileID: 4502255937308110147}
   m_Layer: 0
   m_Name: BloodDecal
   m_TagString: Untagged
@@ -93,16 +92,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &4502255937308110147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5664736053479586584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a90790a0e2cff9448bb3b64c11e5c6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bloodDisappear: 10
