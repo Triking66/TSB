@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Text mp_text;
     //[SerializeField] private float friction;
 
+    [SerializeField] private Vector3 weapon_offset;
+
     private Rigidbody rb;
     private int health;
     public int magic;
@@ -162,19 +164,19 @@ public class PlayerController : MonoBehaviour {
                             animator.SetBool(MOVE_ANIMATION_BOOL, false);
                             animator.SetTrigger(MAGIC_ANIMATION_TRIGGER);
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                         case ("Player_Sword"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += -newweap.transform.right * 1.6f;
+                            newweap.transform.position += -newweap.transform.right * 2f + weapon_offset;
                             break;
                         case ("Knife"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                     }
                     weapon_cd = weapon_cool;
@@ -224,19 +226,19 @@ public class PlayerController : MonoBehaviour {
                         case ("Disk"):
                             animator.SetTrigger(MAGIC_ANIMATION_TRIGGER);
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                         case ("Player_Sword"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += -newweap.transform.right * 1.6f;
+                            newweap.transform.position += -newweap.transform.right * 2f + weapon_offset;
                             break;
                         case ("Knife"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                     }
                     weapon_cd = weapon_cool2;

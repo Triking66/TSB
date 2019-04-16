@@ -85,6 +85,7 @@ MonoBehaviour:
   magic_bar: {fileID: 0}
   hp_text: {fileID: 0}
   mp_text: {fileID: 0}
+  weapon_offset: {x: 0, y: 2, z: 0}
   magic: 0
 --- !u!54 &54120415602538948
 Rigidbody:
@@ -141,6 +142,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4074687723111088}
     m_Modifications:
+    - target: {fileID: 100126, guid: c4cb936790b377c4a923d9758e950a45, type: 3}
+      propertyPath: m_Name
+      value: MC_UV_P2
+      objectReference: {fileID: 0}
     - target: {fileID: 400126, guid: c4cb936790b377c4a923d9758e950a45, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -196,10 +201,6 @@ PrefabInstance:
     - target: {fileID: 400126, guid: c4cb936790b377c4a923d9758e950a45, type: 3}
       propertyPath: m_LocalScale.z
       value: 97.42072
-      objectReference: {fileID: 0}
-    - target: {fileID: 100126, guid: c4cb936790b377c4a923d9758e950a45, type: 3}
-      propertyPath: m_Name
-      value: MC_UV_P2
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: c4cb936790b377c4a923d9758e950a45, type: 3}
       propertyPath: m_Materials.Array.data[0]
