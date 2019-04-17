@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 3314166245558669310, guid: 87f8aa885db0cff42942a72ca72ce61f, type: 3}
   - {fileID: 1958512545025099446, guid: 5aa16c1d41ac30b4ba1f0c0c4d66abe6, type: 3}
   - {fileID: 3691474814453091328, guid: 2dd79045d526b1444adb0344f9d1f187, type: 3}
+  - {fileID: 656523223689138550, guid: 246d74a3a67cf5849ac377131f786cd5, type: 3}
   accel: 1000
   rotateSpeed: 300
   invincible_time: 1.5

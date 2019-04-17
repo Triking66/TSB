@@ -17,7 +17,6 @@ public class Melee_swing : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Break();
     }
 	
 	// Update is called once per frame

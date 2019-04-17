@@ -144,19 +144,22 @@ public class PlayerController : MonoBehaviour {
                         case ("Knife"):
                             weapon_drop = drops[2];
                             break;
+                        case ("crossbow_weap"):
+                            weapon_drop = drops[3];
+                            break;
                     }
                     var newweap = Instantiate(weapon_drop, transform.position, transform.rotation);
                     newweap.transform.LookAt(dir);
-                    newweap.transform.position += newweap.transform.forward;
-                    newweap.GetComponent<Rigidbody>().velocity = newweap.transform.forward;
+                    newweap.transform.position += newweap.transform.forward * 1.5f;
+                    newweap.GetComponent<Rigidbody>().velocity = newweap.transform.forward * 2f;
 
                     weapon = null;
                 }
                 else
                 {
                     Vector3 dir = fire_dir.point;
-                    dir.y += 1;
                     var newweap = Instantiate(weapon, transform.position, transform.rotation);
+                    dir.y = newweap.transform.position.y;
 
                     switch (weapon.name)
                     {
@@ -175,6 +178,11 @@ public class PlayerController : MonoBehaviour {
                         case ("Knife"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
+                            break;
+                        case ("crossbow_weap"):
+                            newweap.GetComponent<crossbow_script>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
@@ -204,6 +212,9 @@ public class PlayerController : MonoBehaviour {
                             break;
                         case ("Knife"):
                             weapon_drop = drops[2];
+                            break;
+                        case ("crossbow_weap"):
+                            weapon_drop = drops[3];
                             break;
                     }
                     Vector3 dir = fire_dir.point;
@@ -237,6 +248,11 @@ public class PlayerController : MonoBehaviour {
                         case ("Knife"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
+                            break;
+                        case ("crossbow_weap"):
+                            newweap.GetComponent<crossbow_script>().owner = gameObject;
                             newweap.transform.LookAt(dir);
                             newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
@@ -330,6 +346,9 @@ public class PlayerController : MonoBehaviour {
                 case "Knife":
                     mp_cost1 = 0;
                     break;
+                default:
+                    mp_cost1 = 0;
+                    break;
             }
             return true;
         }
@@ -345,6 +364,9 @@ public class PlayerController : MonoBehaviour {
                     mp_cost2 = 0;
                     break;
                 case "Knife":
+                    mp_cost2 = 0;
+                    break;
+                default:
                     mp_cost2 = 0;
                     break;
             }
