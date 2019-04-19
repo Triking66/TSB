@@ -34,14 +34,17 @@ public class Player_Projectile : MonoBehaviour
             }
             if (collision.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "Enemy")
             {
+                collision.gameObject.GetComponentInParent<EnemyController>().enabled = true;
                 collision.gameObject.GetComponentInParent<EnemyController>().dealDamage(damage, transform.position - collision.transform.position);
             }
             if (collision.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "ArcherEnemy")
             {
+                collision.gameObject.GetComponentInParent<RangedEnemy>().enabled = true;
                 collision.gameObject.GetComponentInParent<RangedEnemy>().dealDamage(damage, transform.position - collision.transform.position);
             }
             if (collision.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "PriestEnemy")
             {
+                collision.gameObject.GetComponentInParent<PriestEnemy>().enabled = true;
                 collision.gameObject.GetComponentInParent<PriestEnemy>().dealDamage(damage, transform.position - collision.transform.position);
             }
         }

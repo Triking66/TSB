@@ -34,17 +34,22 @@ public class EnemyController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
+        blood = GetComponentInChildren<ParticleSystem>();
+        animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
+        player = GameObject.Find("PlayerParent");
+
     }
     void Start() {
         GetComponent<Patrol>().enabled = false;
-        animator = GetComponent<Animator>();
-        player = GameObject.Find("PlayerParent");
+
+
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
-        audio = GetComponent<AudioSource>();
+
         target = player.transform;
         agent.destination = target.position;
-        blood = GetComponentInChildren<ParticleSystem>();
+
 
         //health = maxHP;
         attack_CD = 0f;
@@ -140,7 +145,16 @@ public class EnemyController : MonoBehaviour {
             AnimateDie();
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(10);
-            Destroy(gameObject,2);
+            
+            //agent.SetDestination(this.transform.position);
+            //gameObject.transform.LookAt(null);
+            //Destroy(GetComponent<NavMeshAgent>(), 2);
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<RadiusAggro>().enabled = false;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<BoxCollider>().enabled = false;
+            //Destroy(GetComponent<EnemyController>(), 2);
+            //Destroy(gameObject,2);
         }
     }
 
