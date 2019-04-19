@@ -112,6 +112,11 @@ PrefabInstance:
       propertyPath: SubModule.subEmitters.Array.data[0].emitter
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4706097061180673139, guid: 51879f41943bd7b47868bab97261d959,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 20dfabd8453ed6747a10a0ad4e31398f, type: 2}
     m_RemovedComponents:
     - {fileID: 1303320729342852223, guid: 51879f41943bd7b47868bab97261d959, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 51879f41943bd7b47868bab97261d959, type: 3}
