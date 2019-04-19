@@ -30,10 +30,20 @@ public class PriestEnemy : MonoBehaviour
     private AudioSource audio;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        layermaskheal = LayerMask.GetMask("Enemy");
+        layermaskbind = LayerMask.GetMask("Player");
+        rb = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
         GetComponent<Patrol>().enabled = false;
-        player = GameObject.FindGameObjectWithTag("Player");
+
         //interval = Random.Range(3, healIntervalMax);
         distance = Random.Range(5, 10);
         agent = GetComponent<NavMeshAgent>();
@@ -41,10 +51,8 @@ public class PriestEnemy : MonoBehaviour
         initialTime = Time.time;
         revinitialTime = Time.time;
         agent.stoppingDistance = distance;
-        rb = GetComponent<Rigidbody>();
-        audio = GetComponent<AudioSource>();
-        layermaskheal = LayerMask.GetMask("Enemy");
-        layermaskbind = LayerMask.GetMask("Player");
+
+
         agent.enabled = false;
 
     }

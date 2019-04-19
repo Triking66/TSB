@@ -34,17 +34,22 @@ public class EnemyController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
+        blood = GetComponentInChildren<ParticleSystem>();
+        animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
+        player = GameObject.Find("PlayerParent");
+
     }
     void Start() {
         GetComponent<Patrol>().enabled = false;
-        animator = GetComponent<Animator>();
-        player = GameObject.Find("PlayerParent");
+
+
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
-        audio = GetComponent<AudioSource>();
+
         target = player.transform;
         agent.destination = target.position;
-        blood = GetComponentInChildren<ParticleSystem>();
+
 
         //health = maxHP;
         attack_CD = 0f;
