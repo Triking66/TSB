@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class decalInfo : MonoBehaviour
+public class arrow_script : MonoBehaviour
 {
-    [SerializeField]
-    private float bloodDisappear;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,6 @@ public class decalInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject, bloodDisappear);
+        
     }
 }
