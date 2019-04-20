@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour {
     private const string DIE_ANIMATION_BOOL = "Die";
     public AudioClip bleed;
     public AudioClip attacking;
+    public AudioClip hit;
     private ParticleSystem blood;
     private bool dead = false;
 
@@ -129,8 +130,10 @@ public class EnemyController : MonoBehaviour {
 
     public void dealDamage(int amt, Vector3 dir)
     {
-        audio.clip = bleed;
-        audio.Play();
+        //audio.clip = bleed;
+        audio.PlayOneShot(bleed);
+        audio.PlayOneShot(hit);
+        //audio.Play();
         blood.Play();
         health -= amt;
 
