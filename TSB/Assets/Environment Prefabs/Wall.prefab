@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2850914991412198836}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4700318614891415101}
   - component: {fileID: 4658325895441747528}
   - component: {fileID: 285085720994815518}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: pCube4
   m_TagString: Wall
   m_Icon: {fileID: 0}
