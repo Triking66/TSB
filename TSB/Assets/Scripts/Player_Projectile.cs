@@ -51,6 +51,14 @@ public class Player_Projectile : MonoBehaviour
             {
                 collision.gameObject.GetComponentInParent<VillagerBehaviour>().dealDamage(damage, transform.position - collision.transform.position);
             }
+            if (collision.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "King")
+            {
+                collision.gameObject.GetComponentInParent<KingBehaviour>().dealDamage(damage, transform.position - collision.transform.position);
+            }
+            if (collision.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "Hero")
+            {
+                collision.gameObject.GetComponentInParent<HeroBehaviour>().dealDamage(damage, transform.position - collision.transform.position);
+            }
         }
         if (charged)
         {

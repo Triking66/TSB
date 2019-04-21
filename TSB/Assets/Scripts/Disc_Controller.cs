@@ -60,5 +60,17 @@ public class Disc_Controller : MonoBehaviour {
             collision.gameObject.GetComponentInParent<VillagerBehaviour>().dealDamage(damage, transform.position - collision.transform.position);
             Destroy(gameObject);
         }
+        else if (collision.gameObject.CompareTag("King") && !hit_wall)
+        {
+            hit_wall = true;
+            collision.gameObject.GetComponentInParent<KingBehaviour>().dealDamage(damage, transform.position - collision.transform.position);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Hero") && !hit_wall)
+        {
+            hit_wall = true;
+            collision.gameObject.GetComponentInParent<HeroBehaviour>().dealDamage(damage, transform.position - collision.transform.position);
+            Destroy(gameObject);
+        }
     }
 }

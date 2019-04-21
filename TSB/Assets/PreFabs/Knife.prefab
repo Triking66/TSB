@@ -67,6 +67,9 @@ MonoBehaviour:
   - Enemy
   - ArcherEnemy
   - PriestEnemy
+  - Villager
+  - King
+  - Hero
   time_to_dup: 0.3
   duplicate_mp_cost: 6
   dups: {fileID: 7872598787204128802, guid: aff00c06c1917ea4680f94457816da44, type: 3}

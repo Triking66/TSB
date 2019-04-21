@@ -12,6 +12,8 @@ TagManager:
   - ArcherEnemy
   - PriestEnemy
   - Villager
+  - King
+  - Hero
   layers:
   - Default
   - TransparentFX

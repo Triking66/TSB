@@ -104,7 +104,14 @@ public class Melee_swing : MonoBehaviour {
             {
                 other.gameObject.GetComponentInParent<VillagerBehaviour>().dealDamage(damage, transform.position - other.transform.position);
             }
-
+            if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "King")
+            {
+                other.gameObject.GetComponentInParent<KingBehaviour>().dealDamage(damage, transform.position - other.transform.position);
+            }
+            if (other.transform.root.gameObject.CompareTag(target_tags[a]) && target_tags[a] == "Hero")
+            {
+                other.gameObject.GetComponentInParent<HeroBehaviour>().dealDamage(damage, transform.position - other.transform.position);
+            }
         }
     }
 
