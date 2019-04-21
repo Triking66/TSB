@@ -127,5 +127,10 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.key1.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2445339881891718299, guid: 7c7661d3a85feee49b779aeab5c075ca,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2529a3b84ece23c47aaaf1d067a8dd6b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7661d3a85feee49b779aeab5c075ca, type: 3}
