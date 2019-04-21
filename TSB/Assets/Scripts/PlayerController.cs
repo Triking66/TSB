@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Text mp_text;
     //[SerializeField] private float friction;
 
+    [SerializeField] private Vector3 weapon_offset;
+
     private Rigidbody rb;
     private int health;
     public int magic;
@@ -142,19 +144,22 @@ public class PlayerController : MonoBehaviour {
                         case ("Knife"):
                             weapon_drop = drops[2];
                             break;
+                        case ("crossbow_weap"):
+                            weapon_drop = drops[3];
+                            break;
                     }
                     var newweap = Instantiate(weapon_drop, transform.position, transform.rotation);
                     newweap.transform.LookAt(dir);
-                    newweap.transform.position += newweap.transform.forward;
-                    newweap.GetComponent<Rigidbody>().velocity = newweap.transform.forward;
+                    newweap.transform.position += newweap.transform.forward * 1.5f;
+                    newweap.GetComponent<Rigidbody>().velocity = newweap.transform.forward * 2f;
 
                     weapon = null;
                 }
                 else
                 {
                     Vector3 dir = fire_dir.point;
-                    dir.y += 1;
                     var newweap = Instantiate(weapon, transform.position, transform.rotation);
+                    dir.y = newweap.transform.position.y;
 
                     switch (weapon.name)
                     {
@@ -162,19 +167,24 @@ public class PlayerController : MonoBehaviour {
                             animator.SetBool(MOVE_ANIMATION_BOOL, false);
                             animator.SetTrigger(MAGIC_ANIMATION_TRIGGER);
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                         case ("Player_Sword"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += -newweap.transform.right * 1.6f;
+                            newweap.transform.position += -newweap.transform.right * 2f + weapon_offset;
                             break;
                         case ("Knife"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
+                            break;
+                        case ("crossbow_weap"):
+                            newweap.GetComponent<crossbow_script>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                     }
                     weapon_cd = weapon_cool;
@@ -203,6 +213,9 @@ public class PlayerController : MonoBehaviour {
                         case ("Knife"):
                             weapon_drop = drops[2];
                             break;
+                        case ("crossbow_weap"):
+                            weapon_drop = drops[3];
+                            break;
                     }
                     Vector3 dir = fire_dir.point;
                     dir.y += 1;
@@ -224,19 +237,24 @@ public class PlayerController : MonoBehaviour {
                         case ("Disk"):
                             animator.SetTrigger(MAGIC_ANIMATION_TRIGGER);
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                         case ("Player_Sword"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<Melee_swing>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += -newweap.transform.right * 1.6f;
+                            newweap.transform.position += -newweap.transform.right * 2f + weapon_offset;
                             break;
                         case ("Knife"):
                             animator.SetTrigger(ATTACK_ANIMATION_TRIGGER);
                             newweap.GetComponent<first_knife>().owner = gameObject;
                             newweap.transform.LookAt(dir);
-                            newweap.transform.position += newweap.transform.forward;
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
+                            break;
+                        case ("crossbow_weap"):
+                            newweap.GetComponent<crossbow_script>().owner = gameObject;
+                            newweap.transform.LookAt(dir);
+                            newweap.transform.position += newweap.transform.forward * 1.2f + weapon_offset;
                             break;
                     }
                     weapon_cd = weapon_cool2;
@@ -328,6 +346,9 @@ public class PlayerController : MonoBehaviour {
                 case "Knife":
                     mp_cost1 = 0;
                     break;
+                default:
+                    mp_cost1 = 0;
+                    break;
             }
             return true;
         }
@@ -343,6 +364,9 @@ public class PlayerController : MonoBehaviour {
                     mp_cost2 = 0;
                     break;
                 case "Knife":
+                    mp_cost2 = 0;
+                    break;
+                default:
                     mp_cost2 = 0;
                     break;
             }

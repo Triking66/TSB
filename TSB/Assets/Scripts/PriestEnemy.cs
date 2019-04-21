@@ -30,10 +30,20 @@ public class PriestEnemy : MonoBehaviour
     private AudioSource audio;
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        layermaskheal = LayerMask.GetMask("Enemy");
+        layermaskbind = LayerMask.GetMask("Player");
+        rb = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
+    }
+
     void Start()
     {
         GetComponent<Patrol>().enabled = false;
-        player = GameObject.FindGameObjectWithTag("Player");
+
         //interval = Random.Range(3, healIntervalMax);
         distance = Random.Range(5, 10);
         agent = GetComponent<NavMeshAgent>();
@@ -41,10 +51,8 @@ public class PriestEnemy : MonoBehaviour
         initialTime = Time.time;
         revinitialTime = Time.time;
         agent.stoppingDistance = distance;
-        rb = GetComponent<Rigidbody>();
-        audio = GetComponent<AudioSource>();
-        layermaskheal = LayerMask.GetMask("Enemy");
-        layermaskbind = LayerMask.GetMask("Player");
+
+
         agent.enabled = false;
 
     }
@@ -128,7 +136,11 @@ public class PriestEnemy : MonoBehaviour
         {
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(10);
-            Destroy(gameObject);
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<RadiusAggro>().enabled = false;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<BoxCollider>().enabled = false;
+            //Destroy(gameObject);
         }
     }
     public void Resurrection()
