@@ -55,7 +55,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!195 &5127445467075222803
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   revivegap: 10
   amountHealed: 50
   heal: {fileID: 8602354560136145857, guid: 014adef8298f0ff4796a12d20b38fec8, type: 3}
-  bind: {fileID: 892289286421072795, guid: 680521a62a6a303498eed4572c3acc7b, type: 3}
+  bind: {fileID: 8102562250474632943, guid: 44f4ba369b71b91439860b23ffaa16e9, type: 3}
   revive: {fileID: 1502193581445896499, guid: 7c7661d3a85feee49b779aeab5c075ca, type: 3}
   range: 11
   enemy: {fileID: 1878748547575370, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}

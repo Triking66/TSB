@@ -16,7 +16,7 @@ public class PriestEnemy : MonoBehaviour
     public float revivegap = 10f;
     public int amountHealed = 50;
     public GameObject heal;
-    public ParticleSystem bind;
+    public GameObject bind;
     public GameObject revive;
     NavMeshAgent agent;
     public float range = 11;
@@ -73,7 +73,7 @@ public class PriestEnemy : MonoBehaviour
     {
         if (!dead)
         {
-            //transform.LookAt(player.transform.position + new Vector3(0, 2, 0));
+            transform.LookAt(player.transform.position);
             if (Time.time - initialTime >= healInterval || initial) 
             {
                 Heal();
@@ -82,28 +82,28 @@ public class PriestEnemy : MonoBehaviour
             {
                 Resurrection();            
             }
-            if ((transform.position - player.transform.position).magnitude < distance - 2)
+            if (Time.time - initialTime >= bindInterval || initial)
             {
-                agent.enabled = false;
-                AnimateMove();
-                rb.velocity = player.transform.forward * 2;
-                if (Time.time - initialTime >= bindInterval||initial)
-                {
-                    Bind();
-                    initialTime = Time.time;
-                }
+                Bind();
             }
-            if ((transform.position - player.transform.position).magnitude >= distance+1 || (transform.position - player.transform.position).magnitude >= distance -1 )
+            //if ((transform.position - player.transform.position).magnitude <= distance - 2)
+            //{
+            //    agent.enabled = false;
+            //    AnimateMove();
+            //    rb.velocity = player.transform.forward * 2;
+            //}
+            if ((transform.position - player.transform.position).magnitude >= distance && (transform.position - player.transform.position).magnitude < distance + 4)
             {
                 AnimateIdle();
-                rb.velocity = Vector3.zero;
+                agent.enabled = false;
+               //rb.velocity = Vector3.zero;
             }
-            if ((transform.position - player.transform.position).magnitude > distance + 2)
+            if ((transform.position - player.transform.position).magnitude >distance + 4)
             {
                 agent.enabled = true;
                 AnimateMove();
                 agent.destination = player.transform.position;
-                rb.velocity = Vector3.zero;
+               //rb.velocity = Vector3.zero;
             }
         }
     }
@@ -113,16 +113,18 @@ public class PriestEnemy : MonoBehaviour
         Collider[] healees = Physics.OverlapSphere(transform.position, healDistance, layermaskheal);
         if (healees.Length != 0)
         {
+            Debug.Log(healees[0].transform);
             for(int i = 0; i < healees.Length; i++)
             {
                 if (healees[i].transform.GetComponent<EnemyController>().health <= 100-amountHealed)
                 {
                     initial = false;
                     AnimateCast();
-                    Vector3 healpoint = healees[i].transform.TransformPoint(0, 3, 0);
-                    healees[i].gameObject.transform.parent.GetComponent<EnemyController>().health = healees[i].gameObject.transform.parent.GetComponent<EnemyController>().health + amountHealed;
-                    GameObject healeffect=Instantiate(heal, healpoint, transform.rotation * Quaternion.Euler(90, 0, 0));
-                    healeffect.transform.parent = healees[i].transform;
+                    //Vector3 healpoint = healees[i].transform.TransformPoint(0, 3, 0);
+                    healees[i].gameObject.GetComponent<EnemyController>().health = healees[i].gameObject.GetComponent<EnemyController>().health + amountHealed;
+                    //GameObject healeffect=Instantiate(heal,healees[i].gameObject.transform.position,transform.rotation * Quaternion.Euler(-90, 0, 0));
+                    Instantiate(heal, healees[i].transform);
+                    //healeffect.transform.parent = healees[i].transform;
                     initialTime = Time.time;
                     break;
                 }
@@ -140,8 +142,9 @@ public class PriestEnemy : MonoBehaviour
             Debug.Log("called");
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
-            ParticleSystem bindeffect = Instantiate(bind, player.transform.position+new Vector3(0,2,0), transform.rotation * Quaternion.Euler(90, 0, 0));
+            GameObject bindeffect = Instantiate(bind, player.transform.position, transform.rotation * Quaternion.Euler(0, 0, 0));
             bindeffect.transform.parent = playee[0].transform;
+            initialTime = Time.time;
         }
     }
 
@@ -175,7 +178,8 @@ public class PriestEnemy : MonoBehaviour
             initial = false;
             AnimateCast();
             GameObject revivedenemy=Instantiate(enemy, transform.position + transform.forward * 2, Quaternion.Euler(90, 0, 0));
-            Instantiate(revive,revivedenemy.transform.position,Quaternion.Euler(0,0,0));
+            GameObject effect =Instantiate(revive,revivedenemy.transform.position,Quaternion.Euler(90,0,0));
+            effect.transform.parent = revivedenemy.transform;
             revinitialTime = Time.time;
         }
         

@@ -99,7 +99,11 @@ public class RadiusAggro : MonoBehaviour
             }
             if (gameObject.tag == "PriestEnemy")
             {
-                enemy.GetComponent<PriestEnemy>().enabled = true;
+                try
+                {
+                    enemy.GetComponent<PriestEnemy>().enabled = true;
+                }
+                catch { }
             }
         }
     }
