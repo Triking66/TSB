@@ -77,7 +77,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 40
-  bolt: {fileID: 0}
   explosion_radius: 15
   explode_time: 0.1
   charged: 0
@@ -85,6 +84,7 @@ MonoBehaviour:
   - Enemy
   - ArcherEnemy
   - PriestEnemy
+  - Villager
 --- !u!82 &8201921425074196320
 AudioSource:
   m_ObjectHideFlags: 0

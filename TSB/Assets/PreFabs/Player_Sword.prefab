@@ -68,6 +68,7 @@ MonoBehaviour:
   - Enemy
   - ArcherEnemy
   - PriestEnemy
+  - Villager
   time_to_extend: 0.3
   extend_mp_cost: 20
   extend_amt: 1

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8956a63e1d251440ac83f1177ceae96
+guid: 3fc7852f5af01e94d8d550a895fa0395
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -61,9 +61,9 @@ ModelImporter:
     100110: mixamorig:Spine
     100112: mixamorig:Spine1
     100114: mixamorig:Spine2
-    100116: villager_male_clothes
-    100118: villager_male_model
-    100120: //RootNode
+    100116: //RootNode
+    100118: villager_female_uv:autoUnwrapFacesvillager_female_hood1
+    100120: villager_female_uv:villager_female_model
     400000: default
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -122,19 +122,19 @@ ModelImporter:
     400110: mixamorig:Spine
     400112: mixamorig:Spine1
     400114: mixamorig:Spine2
-    400116: villager_male_clothes
-    400118: villager_male_model
-    400120: //RootNode
+    400116: //RootNode
+    400118: villager_female_uv:autoUnwrapFacesvillager_female_hood1
+    400120: villager_female_uv:villager_female_model
     2100000: No Name
     2300000: default
     3300000: default
     4300000: default
-    4300002: villager_male_model
-    4300004: villager_male_clothes
+    4300002: villager_female_uv:autoUnwrapFacesvillager_female_hood1
+    4300004: villager_female_uv:villager_female_model
     7400000: mixamo.com
     9500000: //RootNode
-    13700000: villager_male_clothes
-    13700002: villager_male_model
+    13700000: villager_female_uv:autoUnwrapFacesvillager_female_hood1
+    13700002: villager_female_uv:villager_female_model
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -163,35 +163,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: mixamo.com
-      takeName: mixamo.com
-      firstFrame: 0
-      lastFrame: 600
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
