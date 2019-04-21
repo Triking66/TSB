@@ -103,8 +103,13 @@ public class PlayerController : MonoBehaviour {
         }
         else if (blockingWall != null)
         {
-            blockingWall.GetComponent<Renderer>().material = opaque;
-            blockingWall = null;
+            try
+            {
+                blockingWall.GetComponent<Renderer>().material = opaque;
+                blockingWall = null;
+            }
+            catch { }
+
         }
     }
 

@@ -87,7 +87,11 @@ public class RadiusAggro : MonoBehaviour
         {
             if (gameObject.tag == ("Enemy"))
             {
-                enemy.GetComponent<EnemyController>().enabled = true;
+                try
+                {
+                    enemy.GetComponent<EnemyController>().enabled = true;
+                }
+                catch { }
             }
             if (gameObject.tag == "ArcherEnemy")
             {
@@ -95,7 +99,11 @@ public class RadiusAggro : MonoBehaviour
             }
             if (gameObject.tag == "PriestEnemy")
             {
-                enemy.GetComponent<PriestEnemy>().enabled = true;
+                try
+                {
+                    enemy.GetComponent<PriestEnemy>().enabled = true;
+                }
+                catch { }
             }
         }
     }
