@@ -60,7 +60,11 @@ public class KingBehaviour : MonoBehaviour
             }
             else if (SceneManager.GetActiveScene().buildIndex == 2)
             {
-                transform.LookAt(player.transform);
+                try
+                {
+                    transform.LookAt(player.transform);
+                }
+                catch { }
                 GetComponent<BoxCollider>().enabled = false;
                 ParticleSystem[] shields = shield.GetComponentsInChildren<ParticleSystem>();
                 foreach(ParticleSystem p in shields)
@@ -68,7 +72,7 @@ public class KingBehaviour : MonoBehaviour
                     p.Play();
                 }
                 AnimateTerrified();
-                if (GameObject.FindGameObjectWithTag("Hero") == null)
+                if (GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroBehaviour>().health<=0)
                 {
                     GetComponent<BoxCollider>().enabled = true;
                     foreach (ParticleSystem p in shields)

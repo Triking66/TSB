@@ -10,6 +10,7 @@ public class HeroBehaviour : MonoBehaviour
     public int damage = 30;
     public int speed = 10;
     public float attackinterval = 2f;
+    public float magicinterval = 10f;
     ParticleSystem[] fire;
     Animator animator;
     Rigidbody rb;
@@ -27,8 +28,9 @@ public class HeroBehaviour : MonoBehaviour
     GameObject player;
     NavMeshAgent agent;
     float initialTime;
+    float magicTime;
     bool first = true;
-    
+
 
 
     // Start is called before the first frame update
@@ -41,29 +43,34 @@ public class HeroBehaviour : MonoBehaviour
         blood = GetComponentInChildren<ParticleSystem>();
         rb = GetComponent<Rigidbody>();
         initialTime = Time.time;
+        magicTime = Time.time;
         fire = GetComponentsInChildren<ParticleSystem>();
-        agent.enabled = false ;
+        agent.enabled = false;
         //agent.destination = player.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!dead)
+        transform.LookAt(player.transform);
+        if (!dead&& !animator.GetBool(CAST_ANIMATION_BOOL))
         {
-            transform.LookAt(player.transform);
+                
+                agent.destination = player.transform.position;
+
             if  ((transform.position - player.transform.position).magnitude > 5)
             {
                 if (!agent.enabled)
                 { 
                     AnimateMove();
                     agent.enabled = true;
-                    agent.destination = player.transform.position;
+                    //agent.destination = player.transform.position;
                 }
             }
-            int choice = Random.Range(0, 1);
-            if (choice == 0) {
-                if ((transform.position - player.transform.position).magnitude <= 3 && Time.time-initialTime>=attackinterval)
+            //int choice = Random.Range(0, 2);
+            //if (choice == 0)
+            //{
+                if ((transform.position - player.transform.position).magnitude  <5 && Time.time-initialTime>=attackinterval)
                 {
                     agent.enabled = false;
                     if (first)
@@ -78,18 +85,21 @@ public class HeroBehaviour : MonoBehaviour
                     }
                     initialTime = Time.time;
                 }
-            }
-            else
-            {
-                if((transform.position - player.transform.position).magnitude >5)
-                {
-                    agent.enabled = false;
-                    AnimateCast();
-                    Magic();
-                    initialTime = Time.time;
-                }
-            }
         }
+    //    else
+    //    {
+    //        if ((transform.position - player.transform.position).magnitude > 5 && Time.time - magicTime >= magicinterval)
+    //        {
+    //            if (agent.enabled == true)
+    //            {
+    //                agent.enabled = false;
+    //                AnimateCast();
+    //                //StartCoroutine(Magic());
+    //                magicTime = Time.time;
+    //            }
+    //        }
+    //    }
+    //}
     }
 
     public void dealDamage(int amt, Vector3 direction)
@@ -98,6 +108,7 @@ public class HeroBehaviour : MonoBehaviour
         audio.PlayOneShot(bleed);
         audio.PlayOneShot(hit);
         blood.Play();
+        Debug.Log(blood.gameObject.name);
         health -= amt;
         direction.y = 1;
 
@@ -112,18 +123,26 @@ public class HeroBehaviour : MonoBehaviour
             //GetComponent<RadiusAggro>().enabled = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
             GetComponent<BoxCollider>().enabled = false;
+            transform.position = transform.position + new Vector3(0,0.25f, 0);
             //Destroy(gameObject);
         }
     }
 
 
-    private void Magic()
-    {
-        for(int i = 0; i < 2; i++)
-        {
-            fire[i].Play();
-        }
-    }
+    //IEnumerator Magic()
+    //{
+    //    for (int i = 1; i < 3; i++)
+    //    {
+    //        Debug.Log(fire[i].gameObject.name);
+    //        fire[i].Play();
+    //    }
+    //    yield return new WaitForSeconds(5);
+    //    animator.SetBool(CAST_ANIMATION_BOOL, false);
+    //    for (int i = 1; i < 3; i++)
+    //    {
+    //        fire[i].Stop();
+    //    }
+     //}
 
     private void AnimateCast()
     {
