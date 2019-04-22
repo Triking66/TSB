@@ -15,9 +15,12 @@ public class Throne : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position - player.transform.position).magnitude < 10)
+        if (player != null)
         {
-            GetComponentInChildren<MeshCollider>().enabled = true;
+            if ((transform.position - player.transform.position).magnitude < 10)
+            {
+                GetComponentInChildren<MeshCollider>().enabled = true;
+            }
         }
     }
 }

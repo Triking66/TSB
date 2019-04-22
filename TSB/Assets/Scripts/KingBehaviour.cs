@@ -16,6 +16,7 @@ public class KingBehaviour : MonoBehaviour
     Rigidbody rb;
     ParticleSystem blood;
     GameObject shield;
+    GameObject[] priests;
     int health = 10;
     private bool dead = false;
     private const string TERRIFIED_ANIMATION_BOOL = "Terrified";
@@ -33,6 +34,7 @@ public class KingBehaviour : MonoBehaviour
         blood = GetComponentInChildren<ParticleSystem>();
         shield = GameObject.Find("Freeze");
         shield.SetActive(false);
+        priests = GameObject.FindGameObjectsWithTag("PriestEnemy");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -43,24 +45,30 @@ public class KingBehaviour : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 2)
             {
-                if ((transform.position - player.transform.position).magnitude <= 10)
+                if (player != null)
                 {
-                    GetComponent<BoxCollider>().enabled = false;
-                    AnimateMove();
-                    agent.enabled = true;
-                    agent.destination = points[0].transform.position;
-                }
-                if ((transform.position - points[0].transform.position).magnitude <= 1)
-                {
-                    AnimateTerrified();
-                }
-                if (GameObject.FindGameObjectsWithTag("PriestEnemy").Length == 0)
-                {
-                    SceneManager.LoadScene(2);
+                    if ((transform.position - player.transform.position).magnitude <= 10)
+                    {
+                        GetComponent<BoxCollider>().enabled = false;
+                        AnimateMove();
+                        agent.enabled = true;
+                        agent.destination = points[0].transform.position;
+                    }
+                    if ((transform.position - points[0].transform.position).magnitude <= 1)
+                    {
+                        AnimateTerrified();
+                    }
+                    if (priests[0].GetComponent<PriestEnemy>().health <= 0 && priests[1].GetComponent<PriestEnemy>().health <= 0)
+                    {
+                        Destroy(player.transform.gameObject);
+                        GameManager.instance.Advance_Level();
+                        gameObject.SetActive(false);
+                    }
                 }
             }
             else if (SceneManager.GetActiveScene().buildIndex == 3)
             {
+                Debug.Log(shield.gameObject.name);
                 try
                 {
                     transform.LookAt(player.transform);

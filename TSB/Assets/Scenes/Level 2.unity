@@ -18942,6 +18942,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 766392430145918866, guid: 54d659ed7097fe24e8e9499707b9d1b0,
+        type: 3}
+      propertyPath: points.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 766392430145918866, guid: 54d659ed7097fe24e8e9499707b9d1b0,
+        type: 3}
+      propertyPath: points.Array.data[0]
+      value: 
+      objectReference: {fileID: 898931221}
+    - target: {fileID: 5265363204117783323, guid: 54d659ed7097fe24e8e9499707b9d1b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54d659ed7097fe24e8e9499707b9d1b0, type: 3}
 --- !u!1001 &923547371
@@ -23509,7 +23524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1130286150
 Transform:
   m_ObjectHideFlags: 0
@@ -33010,21 +33025,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8250963382302408207, guid: 045f56002914f8148892f3cae91da04a,
-        type: 3}
-      propertyPath: MaxDistance
-      value: 51.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 8250963382302408207, guid: 045f56002914f8148892f3cae91da04a,
-        type: 3}
-      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8250963382302408207, guid: 045f56002914f8148892f3cae91da04a,
-        type: 3}
-      propertyPath: rolloffMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3129028262533202778, guid: 045f56002914f8148892f3cae91da04a,
         type: 3}
       propertyPath: places.Array.data[0]
@@ -33055,6 +33055,21 @@ PrefabInstance:
       propertyPath: places.Array.data[5]
       value: 
       objectReference: {fileID: 205255793}
+    - target: {fileID: 8250963382302408207, guid: 045f56002914f8148892f3cae91da04a,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 51.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250963382302408207, guid: 045f56002914f8148892f3cae91da04a,
+        type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250963382302408207, guid: 045f56002914f8148892f3cae91da04a,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 045f56002914f8148892f3cae91da04a, type: 3}
 --- !u!1 &1663193620
