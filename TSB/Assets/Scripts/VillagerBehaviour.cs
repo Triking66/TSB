@@ -43,18 +43,21 @@ public class VillagerBehaviour : MonoBehaviour
     {
         if (!dead)
         {
-            if ((transform.position - player.transform.position).magnitude < distance)
+            if (player != null)
             {
-                agent.enabled = true;
-                AnimateMove();
-                if (!audio.isPlaying)
-                    audio.PlayOneShot(scream);
-                agent.destination = destination;
-            }
-            if (transform.position == destination || (transform.position - destination).magnitude <= 2)
-            {
-                agent.enabled = false;
-                AnimateTerrified();
+                if ((transform.position - player.transform.position).magnitude < distance)
+                {
+                    agent.enabled = true;
+                    AnimateMove();
+                    if (!audio.isPlaying)
+                        audio.PlayOneShot(scream);
+                    agent.destination = destination;
+                }
+                if (transform.position == destination || (transform.position - destination).magnitude <= 2)
+                {
+                    agent.enabled = false;
+                    AnimateTerrified();
+                }
             }
         }
     }

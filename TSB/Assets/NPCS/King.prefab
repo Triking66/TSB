@@ -304,6 +304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freeze
       objectReference: {fileID: 0}
+    - target: {fileID: 8102562250474632943, guid: 44f4ba369b71b91439860b23ffaa16e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 192132742157358524, guid: 44f4ba369b71b91439860b23ffaa16e9,
         type: 3}
       propertyPath: m_LocalPosition.x

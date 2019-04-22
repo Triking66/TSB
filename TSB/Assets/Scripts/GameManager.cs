@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
             {
                 cur_fade = FadeTime;
                 fading = false;
+                Debug.Log(level_num);
                 SceneManager.LoadScene(level_num);
                 Refresh_Canvas();
             }

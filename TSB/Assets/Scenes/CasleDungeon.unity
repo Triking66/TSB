@@ -6471,15 +6471,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1936295564985358, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
+      propertyPath: m_Name
+      value: Crystal
+      objectReference: {fileID: 0}
     - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
         type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 80196669}
-    - target: {fileID: 1936295564985358, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
-      propertyPath: m_Name
-      value: Crystal
-      objectReference: {fileID: 0}
     - target: {fileID: 4058783848359390, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.77
@@ -6522,6 +6522,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4058783848359390, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23574574485896382, guid: c43a6d6dc5d0267409712f55348ac41e,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

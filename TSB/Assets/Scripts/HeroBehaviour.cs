@@ -52,25 +52,26 @@ public class HeroBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!dead) { 
         transform.LookAt(player.transform);
-        if (!dead&& !animator.GetBool(CAST_ANIMATION_BOOL))
-        {
-                
+            if (!dead && !animator.GetBool(CAST_ANIMATION_BOOL))
+            {
+
                 agent.destination = player.transform.position;
 
-            if  ((transform.position - player.transform.position).magnitude > 5)
-            {
-                if (!agent.enabled)
-                { 
-                    AnimateMove();
-                    agent.enabled = true;
-                    //agent.destination = player.transform.position;
+                if ((transform.position - player.transform.position).magnitude > 5)
+                {
+                    if (!agent.enabled)
+                    {
+                        AnimateMove();
+                        agent.enabled = true;
+                        //agent.destination = player.transform.position;
+                    }
                 }
-            }
-            //int choice = Random.Range(0, 2);
-            //if (choice == 0)
-            //{
-                if ((transform.position - player.transform.position).magnitude  <5 && Time.time-initialTime>=attackinterval)
+                //int choice = Random.Range(0, 2);
+                //if (choice == 0)
+                //{
+                if ((transform.position - player.transform.position).magnitude < 5 && Time.time - initialTime >= attackinterval)
                 {
                     agent.enabled = false;
                     if (first)
@@ -85,6 +86,7 @@ public class HeroBehaviour : MonoBehaviour
                     }
                     initialTime = Time.time;
                 }
+            }
         }
     //    else
     //    {
@@ -108,7 +110,7 @@ public class HeroBehaviour : MonoBehaviour
         audio.PlayOneShot(bleed);
         audio.PlayOneShot(hit);
         blood.Play();
-        Debug.Log(blood.gameObject.name);
+        //Debug.Log(blood.gameObject.name);
         health -= amt;
         direction.y = 1;
 
