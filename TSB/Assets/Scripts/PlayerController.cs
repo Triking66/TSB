@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Vector3 weapon_offset;
 
     private Rigidbody rb;
-    private int health;
+    public int health;
     public int magic;
     private float weapon_cd;
     private float cur_invincible;

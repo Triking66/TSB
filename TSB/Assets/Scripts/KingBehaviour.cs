@@ -40,7 +40,7 @@ public class KingBehaviour : MonoBehaviour
     {
         if (!dead)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 if ((transform.position - player.transform.position).magnitude <= 10)
                 {
@@ -58,7 +58,7 @@ public class KingBehaviour : MonoBehaviour
                     SceneManager.LoadScene(2);
                 }
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
             {
                 try
                 {
