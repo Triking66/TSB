@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 4dfc17d46a933da45a34050b2b43a2b7
+guid: 5131efa301dc62348beea8bf18b13caf
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: painting_frame_1_UV:painting1
+    100000: painting_frame_1_UV:painting_frame_2
     100002: //RootNode
-    400000: painting_frame_1_UV:painting1
+    400000: painting_frame_1_UV:painting_frame_2
     400002: //RootNode
-    2100000: painting_frame_1_UV_painting1Mat
-    2300000: painting_frame_1_UV:painting1
-    3300000: painting_frame_1_UV:painting1
-    4300000: painting_frame_1_UV:painting1
+    2100000: painting_frame_1_UV_painting_frame_2Mat
+    2300000: painting_frame_1_UV:painting_frame_2
+    3300000: painting_frame_1_UV:painting_frame_2
+    4300000: painting_frame_1_UV:painting_frame_2
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: painting_frame_1_UV_painting1Mat
-    second: {fileID: 2100000, guid: 891af977d2dccfd4195ee9f3f4d3d7f1, type: 2}
+      name: painting_frame_1_UV_painting_frame_2Mat
+    second: {fileID: 2100000, guid: 65f4d1a958c42b44e88cc06d45b06a20, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -9,46 +9,13 @@ public class reset_level : MonoBehaviour {
 
     private bool fading = false;
     private bool won = false;
-    [SerializeField] private int FadeTime = 120;
-    [SerializeField] private float FadeSpeed = 0.01f;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (fading)
-        {
-            foreach (Transform child in canvas.transform)
-            {
-                if(child.transform.gameObject.transform.name == "Background")
-                {
-                    Color c = child.transform.gameObject.GetComponent<Image>().color;
-                    if (c.a < 1)
-                        c.a = c.a + FadeSpeed;
-                    child.transform.gameObject.GetComponent<Image>().color = c;
-                }
-                if(child.transform.gameObject.transform.name == "Victory" && won)
-                {
-                    Color c = child.transform.gameObject.GetComponent<Text>().color;
-                    if (c.a < 1)
-                        c.a = c.a + FadeSpeed;
-                    child.transform.gameObject.GetComponent<Text>().color = c;
-                }
-                if(child.transform.gameObject.transform.name == "Dead" && !won)
-                {
-                    Color c = child.transform.gameObject.GetComponent<Text>().color;
-                    if (c.a < 1)
-                        c.a = c.a + FadeSpeed;
-                    child.transform.gameObject.GetComponent<Text>().color = c;
-                }
-            }
-            FadeTime -= 1;
-            if(FadeTime <= 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
+        
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -64,13 +31,12 @@ public class reset_level : MonoBehaviour {
     public void lose()
     {
         print("Lost");
-        fading = true;
+        GameManager.instance.Reset_Level();
     }
 
     public void win()
     {
         print("Won");
-        fading = true;
-        won = true;
+        GameManager.instance.Advance_Level();
     }
 }
