@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour {
     private const string DIE_ANIMATION_BOOL = "Die";
     public AudioClip bleed;
     public AudioClip attacking;
+    public AudioClip hit;
     private ParticleSystem blood;
     private bool dead = false;
 
@@ -34,17 +35,22 @@ public class EnemyController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
+        blood = GetComponentInChildren<ParticleSystem>();
+        animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
+        player = GameObject.Find("PlayerParent");
+
     }
     void Start() {
         GetComponent<Patrol>().enabled = false;
-        animator = GetComponent<Animator>();
-        player = GameObject.Find("PlayerParent");
+
+
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
-        audio = GetComponent<AudioSource>();
+
         target = player.transform;
         agent.destination = target.position;
-        blood = GetComponentInChildren<ParticleSystem>();
+
 
         //health = maxHP;
         attack_CD = 0f;
@@ -115,7 +121,7 @@ public class EnemyController : MonoBehaviour {
         AnimateAttack();
         audio.clip = attacking;
         audio.Play();
-        newWeap.transform.position += -newWeap.transform.right * 1.2f;
+        newWeap.transform.position += -newWeap.transform.right * 1.2f + new Vector3(0, 2f, 0);
         nw.damage = damage;
         nw.swing_speed = 200;
         nw.swing_time = .8f;
@@ -124,8 +130,10 @@ public class EnemyController : MonoBehaviour {
 
     public void dealDamage(int amt, Vector3 dir)
     {
-        audio.clip = bleed;
-        audio.Play();
+        //audio.clip = bleed;
+        audio.PlayOneShot(bleed);
+        audio.PlayOneShot(hit);
+        //audio.Play();
         blood.Play();
         health -= amt;
 
@@ -140,7 +148,16 @@ public class EnemyController : MonoBehaviour {
             AnimateDie();
             player.GetComponent<PlayerController>().dealDamage(-5, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(10);
-            Destroy(gameObject,2);
+            
+            //agent.SetDestination(this.transform.position);
+            //gameObject.transform.LookAt(null);
+            //Destroy(GetComponent<NavMeshAgent>(), 2);
+            GetComponent<NavMeshAgent>().enabled = false;
+            GetComponent<RadiusAggro>().enabled = false;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<BoxCollider>().enabled = false;
+            //Destroy(GetComponent<EnemyController>(), 2);
+            //Destroy(gameObject,2);
         }
     }
 

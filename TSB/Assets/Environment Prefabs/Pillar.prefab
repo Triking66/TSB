@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4503333901087014184}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Pillar
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5660359208843298504}
   - component: {fileID: 6076715261457719919}
   - component: {fileID: 432367071806351433}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: pCube1
   m_TagString: Wall
   m_Icon: {fileID: 0}

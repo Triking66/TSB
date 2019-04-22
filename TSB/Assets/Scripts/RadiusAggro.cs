@@ -36,8 +36,9 @@ public class RadiusAggro : MonoBehaviour
         {
             RaycastHit hit;
             transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
-            if (Physics.Raycast(transform.position + transform.forward, transform.forward, out hit, radius))
+            if (Physics.Raycast(transform.position , transform.forward, out hit, radius))
             {
+                Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.blue);
                 if (hit.transform.tag == "Player")
                 {
                     if (gameObject.tag == ("Enemy"))
@@ -64,8 +65,9 @@ public class RadiusAggro : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer != 8)
+        if (collision.gameObject.tag == "PlayerDisc")
         {
+            collision.gameObject.SetActive(false);
             if (gameObject.tag == ("Enemy"))
             {
                 enemy.GetComponent<EnemyController>().enabled = true;
@@ -77,6 +79,31 @@ public class RadiusAggro : MonoBehaviour
             if (gameObject.tag == "PriestEnemy")
             {
                 enemy.GetComponent<PriestEnemy>().enabled = true;
+            }
+
+        }
+
+        if (collision.gameObject.layer != 8)
+        {
+            if (gameObject.tag == ("Enemy"))
+            {
+                try
+                {
+                    enemy.GetComponent<EnemyController>().enabled = true;
+                }
+                catch { }
+            }
+            if (gameObject.tag == "ArcherEnemy")
+            {
+                enemy.GetComponent<RangedEnemy>().enabled = true;
+            }
+            if (gameObject.tag == "PriestEnemy")
+            {
+                try
+                {
+                    enemy.GetComponent<PriestEnemy>().enabled = true;
+                }
+                catch { }
             }
         }
     }

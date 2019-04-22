@@ -11,6 +11,9 @@ TagManager:
   - Spawn
   - ArcherEnemy
   - PriestEnemy
+  - Villager
+  - King
+  - Hero
   layers:
   - Default
   - TransparentFX
