@@ -1053,7 +1053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4074687723111088, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.12
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4074687723111088, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1507,7 +1507,7 @@ PrefabInstance:
     - target: {fileID: 5760332559331585518, guid: 1a666b98f7791a24d9976c2f5b51639a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.11
+      value: -0.19
       objectReference: {fileID: 0}
     - target: {fileID: 5760332559331585518, guid: 1a666b98f7791a24d9976c2f5b51639a,
         type: 3}
@@ -1553,6 +1553,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 578783460928774437, guid: 1a666b98f7791a24d9976c2f5b51639a,
+        type: 3}
+      propertyPath: health
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a666b98f7791a24d9976c2f5b51639a, type: 3}
@@ -1606,7 +1611,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &866558115

@@ -13,7 +13,14 @@ public class BossWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GetComponentInParent<HeroBehaviour>().health <= 0)
+        {
+            //GetComponent<MeshCollider>().enabled = false;
+            transform.parent = null;
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().isKinematic = false;
+            GetComponentInParent<HeroBehaviour>().damage = 0;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
