@@ -32,6 +32,7 @@ public class KingBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
         blood = GetComponentInChildren<ParticleSystem>();
         shield = GameObject.Find("Freeze");
+        shield.SetActive(false);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -40,7 +41,7 @@ public class KingBehaviour : MonoBehaviour
     {
         if (!dead)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 1)
+            if (SceneManager.GetActiveScene().buildIndex == 2)
             {
                 if ((transform.position - player.transform.position).magnitude <= 10)
                 {
@@ -58,7 +59,7 @@ public class KingBehaviour : MonoBehaviour
                     SceneManager.LoadScene(2);
                 }
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 2)
+            else if (SceneManager.GetActiveScene().buildIndex == 3)
             {
                 try
                 {
@@ -66,6 +67,7 @@ public class KingBehaviour : MonoBehaviour
                 }
                 catch { }
                 GetComponent<BoxCollider>().enabled = false;
+                shield.SetActive(true);
                 ParticleSystem[] shields = shield.GetComponentsInChildren<ParticleSystem>();
                 foreach(ParticleSystem p in shields)
                 {
