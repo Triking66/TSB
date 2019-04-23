@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private int player_hp;
     private int player_mp;
+    private GameObject weapon1;
+    private GameObject weapon2;
     int level_num = 0;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,8 @@ public class GameManager : MonoBehaviour
         {
             player_hp = player.GetComponent<PlayerController>().health;
             player_mp = player.GetComponent<PlayerController>().magic;
+            weapon1 = player.GetComponent<PlayerController>().weapon;
+            weapon2 = player.GetComponent<PlayerController>().weapon2;
         }
         else
         {
@@ -77,6 +81,11 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().magic = player_mp;
             player.GetComponent<PlayerController>().dealDamage(0, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(0);
+            if (level == 2 || level == 3)
+            {
+                player.GetComponent<PlayerController>().weapon = weapon1;
+                player.GetComponent<PlayerController>().weapon = weapon2;
+            }
         }
     }
 

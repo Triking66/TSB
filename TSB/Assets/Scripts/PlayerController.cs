@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField] private GameObject weapon;
-    [SerializeField] private GameObject weapon2;
+    [SerializeField] public GameObject weapon;
+    [SerializeField] public GameObject weapon2;
     [SerializeField] private float weapon_cool;
     [SerializeField] private float weapon_cool2;
     [SerializeField] private int mp_cost1;
