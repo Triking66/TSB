@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
             if (level == 2 || level == 3)
             {
                 player.GetComponent<PlayerController>().weapon = weapon1;
-                player.GetComponent<PlayerController>().weapon = weapon2;
+                player.GetComponent<PlayerController>().weapon2 = weapon2;
             }
         }
     }

@@ -116,6 +116,7 @@ public class KingBehaviour : MonoBehaviour
             //GetComponent<RadiusAggro>().enabled = false;
             rb.constraints = RigidbodyConstraints.FreezeAll;
             GetComponent<BoxCollider>().enabled = false;
+            GameManager.instance.Advance_Level();
             //Destroy(gameObject);
         }
     }
