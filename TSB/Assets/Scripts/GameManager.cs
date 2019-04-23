@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Refresh_Canvas();
         cur_fade = FadeTime;
+
+        SceneManager.activeSceneChanged += OnLevelLoaded;
+
+
     }
 
     public void Advance_Level()
@@ -72,7 +76,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("PlayerParent");
     }
 
-    private void OnLevelWasLoaded(int level)
+    private void OnLevelLoaded(Scene current, Scene next)
     {
         Refresh_Canvas();
         if (won && player != null)
@@ -81,10 +85,12 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().magic = player_mp;
             player.GetComponent<PlayerController>().dealDamage(0, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(0);
-            if (level == 2 || level == 3)
+            if (level_num == 2 || level_num == 3)
             {
-                player.GetComponent<PlayerController>().weapon = weapon1;
-                player.GetComponent<PlayerController>().weapon2 = weapon2;
+                player.GetComponent<PlayerController>().weapon = null;
+                player.GetComponent<PlayerController>().weapon = null;
+                player.GetComponent<PlayerController>().pick_up(weapon1);
+                player.GetComponent<PlayerController>().pick_up(weapon2);
             }
         }
     }

@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Vector3 weapon_offset;
 
     private Rigidbody rb;
-    public int health;
-    public int magic;
+    public int health = 100;
+    public int magic = 100;
     private float weapon_cd;
     private float cur_invincible;
     private bool beingHandled;
@@ -56,8 +56,9 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        health = maxHP;
-        magic = maxMP;
+        
+        //health = maxHP;
+        //magic = maxMP;
 	}
 	
 	// Update is called once per frame
