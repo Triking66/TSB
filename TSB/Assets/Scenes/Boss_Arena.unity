@@ -508,6 +508,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76d520545057aca4e949d82219c6f738, type: 3}
+--- !u!223 &148387251 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 223752989747427912, guid: 76d520545057aca4e949d82219c6f738,
+    type: 3}
+  m_PrefabInstance: {fileID: 148387250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &170552425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1160,11 @@ PrefabInstance:
       propertyPath: accel
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 114823149957742308, guid: d3871dbec139ab84cab1a9f01d2b3534,
+        type: 3}
+      propertyPath: ui
+      value: 
+      objectReference: {fileID: 148387251}
     - target: {fileID: 1904853116351848, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_Layer
       value: 10

@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Image magic_bar;
     [SerializeField] private Text hp_text;
     [SerializeField] private Text mp_text;
+    [SerializeField] private Canvas ui;
     //[SerializeField] private float friction;
 
     [SerializeField] private Vector3 weapon_offset;
@@ -146,6 +147,7 @@ public class PlayerController : MonoBehaviour {
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
+                        ui.GetComponent<Weapon_UI_Script>().Change_Left("");
                         Vector3 dir = fire_dir.point;
                         dir.y += 1;
                         GameObject weapon_drop = null;
@@ -217,6 +219,7 @@ public class PlayerController : MonoBehaviour {
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
+                        ui.GetComponent<Weapon_UI_Script>().Change_Right("");
                         GameObject weapon_drop = null;
                         switch (weapon2.name)
                         {
@@ -358,12 +361,19 @@ public class PlayerController : MonoBehaviour {
             {
                 case "Disk":
                     mp_cost1 = 15;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Left("skull");
                     break;
                 case "Player_Sword":
                     mp_cost1 = 0;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Left("sword");
                     break;
                 case "Knife":
                     mp_cost1 = 0;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Left("knife");
+                    break;
+                case "crossbow_weap":
+                    mp_cost1 = 0;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Left("crossbow");
                     break;
                 default:
                     mp_cost1 = 0;
@@ -378,12 +388,19 @@ public class PlayerController : MonoBehaviour {
             {
                 case "Disk":
                     mp_cost2 = 15;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Right("skull");
                     break;
                 case "Player_Sword":
                     mp_cost2 = 0;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Right("sword");
                     break;
                 case "Knife":
                     mp_cost2 = 0;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Right("knife");
+                    break;
+                case "crossbow_weap":
+                    mp_cost2 = 0;
+                    ui.GetComponent<Weapon_UI_Script>().Change_Right("crossbow");
                     break;
                 default:
                     mp_cost2 = 0;
