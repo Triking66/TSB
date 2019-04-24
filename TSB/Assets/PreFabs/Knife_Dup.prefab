@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4237269439541457547}
   m_Layer: 0
   m_Name: Knife_Dup
-  m_TagString: Untagged
+  m_TagString: Knife
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

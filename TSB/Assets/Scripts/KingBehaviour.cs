@@ -34,7 +34,14 @@ public class KingBehaviour : MonoBehaviour
         animator = GetComponent<Animator>();
         blood = GetComponentInChildren<ParticleSystem>();
         shield = GameObject.Find("Freeze");
-        shield.SetActive(false);
+        try
+        {
+            shield.SetActive(false);
+        }
+        catch
+        {
+
+        }
         priests = GameObject.FindGameObjectsWithTag("PriestEnemy");
         rb = GetComponent<Rigidbody>();
     }
@@ -59,12 +66,16 @@ public class KingBehaviour : MonoBehaviour
                     {
                         AnimateTerrified();
                     }
-                    if (priests[0].GetComponent<PriestEnemy>().health <= 0 && priests[1].GetComponent<PriestEnemy>().health <= 0)
+                    try
                     {
-                        Destroy(player.transform.gameObject);
-                        GameManager.instance.Advance_Level();
-                        gameObject.SetActive(false);
+                        if (priests[0].GetComponent<PriestEnemy>().health <= 0 && priests[1].GetComponent<PriestEnemy>().health <= 0)
+                        {
+                            Destroy(player.transform.gameObject);
+                            GameManager.instance.Advance_Level();
+                            gameObject.SetActive(false);
+                        }
                     }
+                    catch { }
                 }
             }
             else if (SceneManager.GetActiveScene().buildIndex == 3)
