@@ -56,9 +56,11 @@ public class HeroBehaviour : MonoBehaviour
         transform.LookAt(player.transform);
             if (!dead && !animator.GetBool(CAST_ANIMATION_BOOL))
             {
-
-                agent.destination = player.transform.position;
-
+                try
+                {
+                    agent.destination = player.transform.position;
+                }
+                catch { }
                 if ((transform.position - player.transform.position).magnitude > 5)
                 {
                     if (!agent.enabled)

@@ -1083,7 +1083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4074687723111088, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4074687723111088, guid: d3871dbec139ab84cab1a9f01d2b3534, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1568,9 +1568,25 @@ PrefabInstance:
     - target: {fileID: 578783460928774437, guid: 1a666b98f7791a24d9976c2f5b51639a,
         type: 3}
       propertyPath: health
-      value: 400
+      value: 800
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1326897816224767235, guid: 1a666b98f7791a24d9976c2f5b51639a,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800932255181504694, guid: 1a666b98f7791a24d9976c2f5b51639a,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800932255181504694, guid: 1a666b98f7791a24d9976c2f5b51639a,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6681101379246083571, guid: 1a666b98f7791a24d9976c2f5b51639a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1a666b98f7791a24d9976c2f5b51639a, type: 3}
 --- !u!1 &863032516 stripped
 GameObject:

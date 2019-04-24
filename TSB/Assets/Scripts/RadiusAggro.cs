@@ -82,6 +82,40 @@ public class RadiusAggro : MonoBehaviour
             }
 
         }
+        if (collision.gameObject.tag == "Knife")
+        {
+            collision.gameObject.SetActive(false);
+            if (gameObject.tag == ("Enemy"))
+            {
+                enemy.GetComponent<EnemyController>().enabled = true;
+            }
+            if (gameObject.tag == "ArcherEnemy")
+            {
+                enemy.GetComponent<RangedEnemy>().enabled = true;
+            }
+            if (gameObject.tag == "PriestEnemy")
+            {
+                enemy.GetComponent<PriestEnemy>().enabled = true;
+            }
+
+        }
+        if (collision.gameObject.tag == "Arrow")
+        {
+            collision.gameObject.SetActive(false);
+            if (gameObject.tag == ("Enemy"))
+            {
+                enemy.GetComponent<EnemyController>().enabled = true;
+            }
+            if (gameObject.tag == "ArcherEnemy")
+            {
+                enemy.GetComponent<RangedEnemy>().enabled = true;
+            }
+            if (gameObject.tag == "PriestEnemy")
+            {
+                enemy.GetComponent<PriestEnemy>().enabled = true;
+            }
+
+        }
 
         if (collision.gameObject.layer != 8)
         {
