@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3399192817527631342}
   - component: {fileID: 3576565975027822409}
   - component: {fileID: 8201921425074196320}
+  - component: {fileID: 1503049505616581694}
   m_Layer: 0
   m_Name: arrow_weap
   m_TagString: Untagged
@@ -183,6 +184,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1503049505616581694
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668707108374654255}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8234513276488985344
 GameObject:
   m_ObjectHideFlags: 0
