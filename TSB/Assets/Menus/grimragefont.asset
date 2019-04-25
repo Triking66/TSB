@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: grimragefont
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 0, g: 0, b: 0, a: 1}
-  topRight: {r: 1, g: 1, b: 1, a: 1}
-  bottomLeft: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
-  bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  topLeft: {r: 1, g: 0, b: 0, a: 1}
+  topRight: {r: 1, g: 0, b: 0, a: 1}
+  bottomLeft: {r: 1, g: 0.08235294, b: 0, a: 1}
+  bottomRight: {r: 1, g: 0, b: 0, a: 1}

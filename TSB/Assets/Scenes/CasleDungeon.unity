@@ -803,10 +803,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -1019,6 +1029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166228251550605873, guid: 30a0890866591a747b9776622cc8a3a5,
+        type: 3}
+      propertyPath: radius
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30a0890866591a747b9776622cc8a3a5, type: 3}
@@ -8576,10 +8591,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -10945,10 +10970,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -16138,10 +16173,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 17.92
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -17205,10 +17250,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 8.4
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -17336,10 +17391,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 8.09
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -20117,10 +20182,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 16
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -25764,8 +25839,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -26870,10 +26945,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -27603,10 +27688,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -27862,6 +27957,21 @@ PrefabInstance:
         type: 3}
       propertyPath: health
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: radius
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -28245,10 +28355,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 11
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -29062,10 +29182,20 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 9.02
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4354513734852948454, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
@@ -29160,6 +29290,21 @@ PrefabInstance:
         type: 3}
       propertyPath: health
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644926860800064, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
+        type: 3}
+      propertyPath: radius
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}

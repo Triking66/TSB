@@ -1570,6 +1570,11 @@ PrefabInstance:
       propertyPath: health
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: 578783460928774437, guid: 1a666b98f7791a24d9976c2f5b51639a,
+        type: 3}
+      propertyPath: speed
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1326897816224767235, guid: 1a666b98f7791a24d9976c2f5b51639a,
         type: 3}
       propertyPath: m_ApplyRootMotion
