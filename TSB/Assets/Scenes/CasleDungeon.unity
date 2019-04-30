@@ -811,7 +811,7 @@ PrefabInstance:
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
@@ -1024,6 +1024,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166228251550605873, guid: 30a0890866591a747b9776622cc8a3a5,
+        type: 3}
+      propertyPath: radius
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30a0890866591a747b9776622cc8a3a5, type: 3}
@@ -6480,6 +6485,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal
       objectReference: {fileID: 0}
+    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 80196669}
     - target: {fileID: 4058783848359390, guid: c43a6d6dc5d0267409712f55348ac41e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.77
@@ -6532,11 +6542,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.3487
       objectReference: {fileID: 0}
-    - target: {fileID: 114295806708236922, guid: c43a6d6dc5d0267409712f55348ac41e,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 80196669}
     - target: {fileID: 23574574485896382, guid: c43a6d6dc5d0267409712f55348ac41e,
         type: 3}
       propertyPath: m_Enabled
@@ -10971,7 +10976,7 @@ PrefabInstance:
     - target: {fileID: 8395747966706798076, guid: 4ead964a1c078f8448ac22a187fc722a,
         type: 3}
       propertyPath: radius
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ead964a1c078f8448ac22a187fc722a, type: 3}
