@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: 624b93dcab8e53f42983adf7b6b5c85e
   - enabled: 1
+    path: Assets/Scenes/Backstory.unity
+    guid: 101d36d39475d4844b03922643cb9382
+  - enabled: 1
     path: Assets/Scenes/CasleDungeon.unity
     guid: 11afcfefb6294d443a920ac3c47a7653
   - enabled: 1

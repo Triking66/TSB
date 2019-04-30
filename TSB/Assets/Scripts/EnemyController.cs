@@ -121,7 +121,7 @@ public class EnemyController : MonoBehaviour {
         AnimateAttack();
         audio.clip = attacking;
         audio.Play();
-        newWeap.transform.position += -newWeap.transform.right * 1.2f + new Vector3(0, 2f, 0);
+        newWeap.transform.position += -newWeap.transform.right * 1.2f + new Vector3(0, 1f, 0);
         nw.damage = damage;
         nw.swing_speed = 200;
         nw.swing_time = .8f;
