@@ -44,7 +44,7 @@ public class KingBehaviour : MonoBehaviour
     {
         if (!dead)
         {
-            if (SceneManager.GetActiveScene().buildIndex == 2)
+            if (SceneManager.GetActiveScene().buildIndex == 3)
             {
                 if (player != null)
                 {
