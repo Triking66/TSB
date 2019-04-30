@@ -86,8 +86,11 @@ MonoBehaviour:
   magic_bar: {fileID: 0}
   hp_text: {fileID: 0}
   mp_text: {fileID: 0}
+  ui: {fileID: 0}
   weapon_offset: {x: 0, y: 2, z: 0}
+  health: 100
   magic: 0
+  dead: 0
 --- !u!54 &54120415602538948
 Rigidbody:
   m_ObjectHideFlags: 0
