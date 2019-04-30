@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
         won = true;
         level_num += 1;
-        if(level_num > 3)
+        if(level_num > 4)
         {
             level_num = 0;
         }
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
             player.GetComponent<PlayerController>().magic = player_mp;
             player.GetComponent<PlayerController>().dealDamage(0, Vector3.zero);
             player.GetComponent<PlayerController>().restore_mp(0);
-            if (level_num == 2 || level_num == 3)
+            if (level_num == 3 || level_num == 4)
             {
                 player.GetComponent<PlayerController>().weapon = null;
                 player.GetComponent<PlayerController>().weapon = null;
