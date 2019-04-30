@@ -67,7 +67,7 @@ public class KingBehaviour : MonoBehaviour
                     }
                 }
             }
-            else if (SceneManager.GetActiveScene().buildIndex == 3)
+            else if (SceneManager.GetActiveScene().buildIndex == 4)
             {
                 Debug.Log(shield.gameObject.name);
                 try
